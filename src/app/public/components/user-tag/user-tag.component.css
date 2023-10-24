@@ -1,0 +1,22 @@
+.user-tag {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .profile-image {
+    width: 40px; /* Ajusta el tamaño de la imagen de perfil según tus necesidades */
+    height: 40px;
+    border-radius: 50%; /* Para que la imagen sea circular */
+    margin-right: 10px; /* Espacio entre la imagen y el nombre */
+  }
+  
+  .user-info {
+    font-size: 16px; /* Tamaño del texto del saludo */
+  }
+  
+  .greeting {
+    margin: auto;
+    text-decoration: none;
+    color: var(--furni-go-sys-light-on-surface, #201A18);
+  }

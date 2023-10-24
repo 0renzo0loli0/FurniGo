@@ -1,0 +1,21 @@
+.mat-mdc-raised-button.mat-primary {
+    display: flex;
+    height: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    border-radius: 100px;
+    background: var(--furni-go-sys-light-primary, #A43D00);
+
+    color: var(--furni-go-sys-light-on-primary, #FFF);
+    text-align: center;
+    /* FurniGo/label/large */
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    /* 142.857% */
+}
