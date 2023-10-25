@@ -1,0 +1,49 @@
+mat-card{
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+    height: 200px;
+    background-color: #FEF1EC;
+    border-radius: 15px;
+}
+
+mat-card-title{
+    font-size: 32px;
+    font-weight: 400;
+    margin-block: 5px;
+}
+
+mat-card-subtitle{
+    display: flex;
+    flex-direction: row;   
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-text-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 5px;
+    width: 60%;
+}
+
+img{
+    width: 40%;
+    height: 100%;
+    border-radius: 0 15px 15px 0;
+}
+
+h2{
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #53443E;
+}
+
+
+p{
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+}

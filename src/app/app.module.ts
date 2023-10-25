@@ -19,19 +19,25 @@ import { InputComponent } from './shared/components/input/input.component';
 import { LoginComponent } from './public/pages/login/login.component';
 import { RegisterComponent } from './public/pages/register/register.component';
 import { UserTagComponent } from './public/components/user-tag/user-tag.component';
+import { ContextBarComponent } from './public/components/context-bar/context-bar.component';
+import { OrderItemCardComponent } from './order/components/order-item-card/order-item-card.component';
+import { OrderAllComponent } from './order/pages/order-all/order-all.component';
 
 
 @NgModule({
   declarations: [
     // Base components
     AppComponent,
-    // Custom imports
 
+    // Custom imports
     ButtonComponent,
     InputComponent,
     LoginComponent,
     RegisterComponent,
-    UserTagComponent
+    UserTagComponent,
+    ContextBarComponent,
+    OrderItemCardComponent,
+    OrderAllComponent
   ],
   imports: [
     // Helper imports

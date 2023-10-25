@@ -1,9 +1,14 @@
-<mat-toolbar>
-  <a routerLink="/">FurniGo</a>
-  <div class="divider"></div>
-  <div class="buttons">
-    <app-button *ngFor="let button of buttons" [routerLink]="button.redirectTo">{{button.content}}</app-button>
+<div class="app-container">
+  <div class="navbar">
+    <mat-toolbar>
+      <a routerLink="/">FurniGo</a>
+      <div class="divider"></div>
+      <div class="buttons">
+        <app-button *ngFor="let button of buttons" [routerLink]="button.redirectTo">{{button.content}}</app-button>
+      </div>
+      <app-user-tag [name]="getCurrentUser()?.name || 'Unknown'"></app-user-tag>
+    </mat-toolbar>
+    <app-context-bar [title]="this.subtitle" />
   </div>
-  <app-user-tag [name]="getCurrentUser()?.name || 'Unknown'"></app-user-tag>
-</mat-toolbar>
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</div>

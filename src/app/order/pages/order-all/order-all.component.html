@@ -1,0 +1,11 @@
+<div class="card-list">
+    <app-order-item-card 
+        *ngFor="let order of orders" 
+        [title]="order.title" 
+        [estimate]="order.estimate"
+        [code]="order.orderID"
+        [status]="order.state"
+        [maxDate]="order.limit"
+        class="item-card"></app-order-item-card>
+</div>
+

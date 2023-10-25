@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ButtonComponent } from './shared/components/button/button.component';
+import { OrderAllComponent } from './order/pages/order-all/order-all.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'order/all', pathMatch: 'full'},
   {path: 'profile', component: ButtonComponent},
-  {path: 'order/all', component: ButtonComponent},
+  {path: 'order/all', component: OrderAllComponent},
   {path: 'order/info', component: ButtonComponent},
   {path: 'order/new', component: ButtonComponent},
   {path: 'order/edit', component: ButtonComponent},
@@ -17,7 +18,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

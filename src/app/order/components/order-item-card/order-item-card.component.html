@@ -1,0 +1,21 @@
+<mat-card>
+    <div class="card-text-section">
+      <mat-card-header>
+        <mat-card-title>{{ this.title }}</mat-card-title>
+        <mat-card-subtitle>
+          <h2>Pedido #{{this.code}}</h2>
+          <!-- <app-status-tag [status]="this.status" *ngIf="this.status"></app-status-tag> -->
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Fecha Limite: {{ this.maxDate | date }}</p>
+        <p *ngIf="this.estimate">
+          Presupuesto: {{ this.estimate | currency }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <app-button [routerLink]="'/order/info'" [queryParams]="{'code': this.code}">Ver Más</app-button>
+      </mat-card-actions>
+    </div>
+    <img class="media-placeholder" [src]="imgPath" alt="3D Viewer" />
+  </mat-card>

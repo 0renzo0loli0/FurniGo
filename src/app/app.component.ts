@@ -1,9 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { IUser, USER_ROLE } from './user/model/user.interface';
+import { NavigationEnd, Router } from '@angular/router';
 
 interface NavButton {
-  content?: string
-  redirectTo?: string
+  content: string
+  redirectTo: string
+}
+
+const routeSubtitle: {[key: string]: string} = {
+  "/profile": "Mi Perfil",
+  "/order/all": "Mis Ordenes",
+  "/order/info": "Mi Orden",
+  "/order/new": "Nueva Orden",
+  "/order/edit": "Editar Orden",
+  "/order/search": "Buscar Ordenes",
+  "/offer/all": "Mis Ofertas",
+  "/offer/info": "Mi Oferta",
+  "/offer/new": "Nueva Oferta",
+  "/offer/edit": "Editar Oferta"
 }
 
 @Component({
@@ -13,6 +27,7 @@ interface NavButton {
 })
 export class AppComponent implements OnInit {
   title = 'FurniGo';
+  subtitle = 'Pagina Actual'
 
   buttons: Array<NavButton> = [{
     content: 'Unknown',
@@ -22,7 +37,11 @@ export class AppComponent implements OnInit {
     redirectTo: '/'
   }]
 
+  constructor(private router: Router){}
+
   ngOnInit(): void {
+    this.chooseSubtitle()
+
     localStorage.setItem('user', JSON.stringify({
       id: 0,
       name: 'renzo',
@@ -51,5 +70,18 @@ export class AppComponent implements OnInit {
     }
 
     return null;
+  }
+
+  chooseSubtitle(){
+    // añadir el evento que escuchara los cambios de routing
+    this.router.events.subscribe((val)=>{
+      // escuchar cuando la navegacion ya fue establecida
+      if(val instanceof NavigationEnd ){
+        // crear un constructor de la url solo tener el path y no las query params
+        const url = new URL(val.urlAfterRedirects, location.origin)
+        // buscar el subtitulo para la barra de contexto segun el routing path actual
+        this.subtitle = routeSubtitle[url.pathname] || "Pagina Desconocida"
+      }
+    })
   }
 }
