@@ -1,0 +1,17 @@
+.status-tag{
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 14px;
+    color: #201A18;
+}
+
+mat-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8px;
+    font-weight: 500;
+    width: auto;
+    margin-inline-end: 5px;
+}

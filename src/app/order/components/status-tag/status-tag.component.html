@@ -1,1 +1,5 @@
-<p>status-tag works!</p>
+<div class="status-tag">
+  <mat-icon aria-hidden="false" aria-label="state status" fontIcon="circle"
+    [ngStyle]="{'color': this.currentOptions.color}"></mat-icon>
+  <div class="status-text">{{ this.currentOptions.status }}</div>
+</div>

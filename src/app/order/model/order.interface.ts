@@ -7,4 +7,5 @@ export interface IOrder {
     title: string
     limit: Date
     state: OrderStatus
+    details: string
 }

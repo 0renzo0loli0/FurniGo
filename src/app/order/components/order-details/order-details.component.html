@@ -1,0 +1,16 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{ title }}</mat-card-title>
+        <mat-card-subtitle>
+            <h2>Pedido #{{ code }}</h2>
+            <app-status-tag></app-status-tag>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>Fecha de entrega:</p><span>{{ maxDate | date }}</span>
+        <p>Precio acordado:</p><span>{{ maxBudget | currency }}</span>
+        <!-- AÑADIR LOGICA CLIENTE O EXPERTO -->
+        <p>Experto:</p> <span>{{ user }}</span>
+        <p>Detalles:</p><span class="details">{{ details }}</span>
+    </mat-card-content>
+</mat-card>

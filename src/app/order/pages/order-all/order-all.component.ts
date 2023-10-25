@@ -15,10 +15,11 @@ export class OrderAllComponent implements OnInit {
       this.orders.push({
         orderID: i,
         clientID: i*1000/15%20,
-        estimate: i*1000/52%20,
+        estimate: 100,
         limit: new Date(),
         title: "Order " + i,
-        state: OrderStatus.DONE
+        state: OrderStatus.BUILDING,
+        details: "lorem ipsum dolor sit amet"
       })
     }
   }

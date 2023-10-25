@@ -8,6 +8,7 @@ export class Order implements IOrder{
     state: OrderStatus;
     title: string;
     limit: Date;
+    details: string
 
     constructor(){
         this.orderID = -1;
@@ -15,6 +16,7 @@ export class Order implements IOrder{
         this.estimate = -1;
         this.title = "Unknown"
         this.limit = new Date()
+        this.details = "lorem ipsum dolor sit amet lore mauris et dolor sit"
         this.state = OrderStatus.STOPPED
     }
 

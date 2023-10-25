@@ -24,6 +24,7 @@ import { OrderItemCardComponent } from './order/components/order-item-card/order
 import { OrderAllComponent } from './order/pages/order-all/order-all.component';
 import { OrderInfoComponent } from './order/pages/order-info/order-info.component';
 import { StatusTagComponent } from './order/components/status-tag/status-tag.component';
+import { OrderDetailsComponent } from './order/components/order-details/order-details.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { StatusTagComponent } from './order/components/status-tag/status-tag.com
     OrderItemCardComponent,
     OrderAllComponent,
     OrderInfoComponent,
-    StatusTagComponent
+    StatusTagComponent,
+    OrderDetailsComponent
   ],
   imports: [
     // Helper imports

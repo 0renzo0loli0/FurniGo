@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ButtonComponent } from './shared/components/button/button.component';
 import { OrderAllComponent } from './order/pages/order-all/order-all.component';
+import { OrderInfoComponent } from './order/pages/order-info/order-info.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'order/all', pathMatch: 'full'},
   {path: 'profile', component: ButtonComponent},
   {path: 'order/all', component: OrderAllComponent},
-  {path: 'order/info', component: ButtonComponent},
+  {path: 'order/info', component: OrderInfoComponent},
   {path: 'order/new', component: ButtonComponent},
   {path: 'order/edit', component: ButtonComponent},
   {path: 'order/search', component: ButtonComponent},
