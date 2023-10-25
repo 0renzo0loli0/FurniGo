@@ -1,4 +1,4 @@
-import { OrderState } from "./order_state.enum"
+import { OrderStatus } from "./order_state.enum"
 
 export interface IOrder {
     orderID: number
@@ -6,5 +6,5 @@ export interface IOrder {
     estimate: number
     title: string
     limit: Date
-    state: OrderState
+    state: OrderStatus
 }

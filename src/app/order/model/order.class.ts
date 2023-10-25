@@ -1,11 +1,11 @@
 import { IOrder } from "./order.interface";
-import { OrderState } from "./order_state.enum";
+import { OrderStatus } from "./order_state.enum";
 
 export class Order implements IOrder{
     orderID: number;
     clientID: number;
     estimate: number;
-    state: OrderState;
+    state: OrderStatus;
     title: string;
     limit: Date;
 
@@ -15,7 +15,7 @@ export class Order implements IOrder{
         this.estimate = -1;
         this.title = "Unknown"
         this.limit = new Date()
-        this.state = OrderState.STOPPED
+        this.state = OrderStatus.STOPPED
     }
 
 }

@@ -1,4 +1,4 @@
-export enum OrderState{
+export enum OrderStatus{
     INLINE,
     BUILDING,
     STOPPED,

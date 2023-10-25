@@ -22,6 +22,8 @@ import { UserTagComponent } from './public/components/user-tag/user-tag.componen
 import { ContextBarComponent } from './public/components/context-bar/context-bar.component';
 import { OrderItemCardComponent } from './order/components/order-item-card/order-item-card.component';
 import { OrderAllComponent } from './order/pages/order-all/order-all.component';
+import { OrderInfoComponent } from './order/pages/order-info/order-info.component';
+import { StatusTagComponent } from './order/components/status-tag/status-tag.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { OrderAllComponent } from './order/pages/order-all/order-all.component';
     UserTagComponent,
     ContextBarComponent,
     OrderItemCardComponent,
-    OrderAllComponent
+    OrderAllComponent,
+    OrderInfoComponent,
+    StatusTagComponent
   ],
   imports: [
     // Helper imports

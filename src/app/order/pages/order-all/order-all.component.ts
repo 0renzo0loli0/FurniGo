@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IOrder } from '../../model/order.interface';
-import { OrderState } from '../../model/order_state.enum';
+import { OrderStatus } from '../../model/order_state.enum';
 
 @Component({
   selector: 'app-order-all',
@@ -18,7 +18,7 @@ export class OrderAllComponent implements OnInit {
         estimate: i*1000/52%20,
         limit: new Date(),
         title: "Order " + i,
-        state: OrderState.DONE
+        state: OrderStatus.DONE
       })
     }
   }
