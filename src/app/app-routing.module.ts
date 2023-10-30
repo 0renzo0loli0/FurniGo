@@ -3,23 +3,37 @@ import { RouterModule, Routes } from '@angular/router';
 import { ButtonComponent } from './shared/components/button/button.component';
 import { OrderAllComponent } from './order/pages/order-all/order-all.component';
 import { OrderInfoComponent } from './order/pages/order-info/order-info.component';
+import { UserProfileComponent } from './user/pages/user-profile/user-profile.component';
+import { SignUpComponent } from './user/pages/sign-up/sign-up.component';
+import { SignInComponent } from './user/pages/sign-in/sign-in.component';
+import { authGuard } from './user/guards/auth.guard';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'order/all', pathMatch: 'full'},
-  {path: 'profile', component: ButtonComponent},
-  {path: 'order/all', component: OrderAllComponent},
-  {path: 'order/info', component: OrderInfoComponent},
-  {path: 'order/new', component: ButtonComponent},
-  {path: 'order/edit', component: ButtonComponent},
-  {path: 'order/search', component: ButtonComponent},
-  {path: 'offer/all', component: ButtonComponent},
-  {path: 'offer/info', component: ButtonComponent},
-  {path: 'offer/new', component: ButtonComponent},
-  {path: 'offer/edit', component: ButtonComponent},
+  { path: '', redirectTo: 'order/all', pathMatch: 'full', },
+  { path: 'sign-in', component: SignInComponent },
+  { path: 'sign-up', component: SignUpComponent },
+  { path: 'profile', component: UserProfileComponent, canActivate: [authGuard] },
+  {
+    path: 'order', children: [
+      { path: 'all', component: OrderAllComponent },
+      { path: 'info', component: OrderInfoComponent },
+      { path: 'new', component: ButtonComponent },
+      { path: 'edit', component: ButtonComponent },
+      { path: 'search', component: ButtonComponent },],
+      canActivate: [authGuard]
+  },
+  {
+    path: 'offer', children: [
+      { path: 'all', component: ButtonComponent },
+      { path: 'info', component: ButtonComponent },
+      { path: 'new', component: ButtonComponent },
+      { path: 'edit', component: ButtonComponent },],
+      canActivate: [authGuard]
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

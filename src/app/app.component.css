@@ -1,3 +1,8 @@
+main {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 94px 0 1fr;
+}
 .divider {
     flex: 1 1 auto;
 }
@@ -37,14 +42,6 @@ mat-toolbar {
     left: 0;
     width: 100%;
     z-index: 999;
+    height: 94px;
 }
 
-.app-container {
-    display: flex;
-    flex-direction: column;
-}
-
-router-outlet {
-    flex: 1;
-    margin-top: 94px;
-}

@@ -8,4 +8,6 @@ export interface IUser{
     name: string
     pic?: string
     role: USER_ROLE
+    email: string
+    phone: string
 }

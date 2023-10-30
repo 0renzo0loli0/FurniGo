@@ -1,0 +1,67 @@
+<div class="form">
+    <mat-card>
+        <mat-card-title align="center">Registrarse</mat-card-title>
+        <mat-card-subtitle>
+            <span>Ya tienes una cuenta? <a routerLink="/sign-in">Inicia Sesion!!</a></span>
+        </mat-card-subtitle>
+        <form [formGroup]="this.signInForm">
+            <mat-error align="center" *ngIf="this.hadError">{{this.errorMessage}}</mat-error>
+            <mat-grid-list cols="1" rowHeight="90px">
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="user@domain.com" formControlName="email" required>
+                        <mat-error *ngIf="email.errors?.['email']">Debes ingresar un email valido</mat-error>
+                        <mat-error *ngIf="email.errors?.['required']">El Email es requerido</mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput placeholder="contraseña" formControlName="password" required>
+                        <mat-error *ngIf="password.errors?.['min-length']">La contraseña debe tener minimo 8
+                            caracteres</mat-error>
+                        <mat-error *ngIf="password.errors?.['required']">La Constraseña es requerida</mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <mat-label>Nombre</mat-label>
+                        <input matInput placeholder="nombres" formControlName="name" required>
+                        <mat-error *ngIf="password.errors?.['required']">El nombre es requerido</mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <mat-label>Apellido</mat-label>
+                        <input matInput placeholder="apellidos" formControlName="lastName" required>
+                        <mat-error *ngIf="password.errors?.['required']">El apellido es requerido</mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <mat-label>Telefono</mat-label>
+                        <input matInput placeholder="telefono" formControlName="phone" required>
+                        <mat-error *ngIf="password.errors?.['min-length']">El telefono debe tener minimo 9
+                            digitos</mat-error>
+                        <mat-error *ngIf="password.errors?.['required']">El telefono es requerido</mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <mat-label>Select a role</mat-label>
+                        <mat-select value="client" aria-label="role" formControlName="role" required>
+                            <mat-option value="client">Client</mat-option>
+                            <mat-option value="expert">Expert</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="role.errors?.['required']">El rol es requerido</mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+            <mat-card-actions align="end">
+                <app-button (click)="signUp()">Registrarse</app-button>
+                <!-- <app-button (click)="cancelSignUp()">Cancel</app-button> -->
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>

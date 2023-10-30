@@ -7,10 +7,14 @@
         </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-        <p>Fecha de entrega:</p><span>{{ maxDate | date }}</span>
+        <p>Fecha de entrega:</p><span>{{ limit | date }}</span>
         <p>Precio acordado:</p><span>{{ maxBudget | currency }}</span>
-        <!-- AÑADIR LOGICA CLIENTE O EXPERTO -->
-        <p>Experto:</p> <span>{{ user }}</span>
+        <ng-template [ngIf]="this.isClient()" [ngIfElse]="expert">
+            <p>Cliente: </p> <span>{{ this.getOrderClientName() }}</span>
+        </ng-template>
+        <ng-template #expert>
+            <p>Experto: </p> <span>{{ this.getOrderExpertName() }}</span>
+        </ng-template>
         <p>Detalles:</p><span class="details">{{ details }}</span>
     </mat-card-content>
 </mat-card>

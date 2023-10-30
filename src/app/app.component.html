@@ -1,14 +1,20 @@
-<div class="app-container">
-  <div class="navbar">
-    <mat-toolbar>
-      <a routerLink="/">FurniGo</a>
-      <div class="divider"></div>
-      <div class="buttons">
-        <app-button *ngFor="let button of buttons" [routerLink]="button.redirectTo">{{button.content}}</app-button>
-      </div>
-      <app-user-tag [name]="getCurrentUser()?.name || 'Unknown'"></app-user-tag>
-    </mat-toolbar>
-    <app-context-bar [title]="this.subtitle" />
-  </div>
-  <router-outlet></router-outlet>
+<div class="navbar">
+  <mat-toolbar>
+    <a routerLink="/">FurniGo</a>
+    <div class="divider"></div>
+    <div class="buttons" *ngIf="this.existUser()">
+      <app-button routerLink="/order/all">Mis Pedidos</app-button>
+      <app-button [routerLink]="this.getNavButtonOptions().redirectTo">{{this.getNavButtonOptions().content}}</app-button>
+    </div>
+    <div class="buttons" *ngIf="!this.existUser()">
+      <app-button routerLink="/sign-in">Iniciar Sesion</app-button>
+      <app-button routerLink="/sign-up">Registrarse</app-button>
+    </div>
+    <app-user-tag *ngIf="this.existUser()" [name]="getCurrentUser()?.name || 'Unknown'"></app-user-tag>
+  </mat-toolbar>
+  <app-context-bar [title]="this.subtitle" />
 </div>
+<main>
+<div class="fix-navbar"></div>
+<router-outlet></router-outlet>
+</main>

@@ -6,6 +6,10 @@
     line-height: 32px; /* 112.281% */
 }
 
+mat-card {
+    padding-bottom: 90px;
+}
+
 mat-card-header {
     display: flex;
     flex-direction: column;
@@ -16,6 +20,7 @@ mat-card-title {
     font-size: 64px;
     font-weight: 400px;
     line-height: 64px; /* 112.281% */
+    margin-bottom: 10px;
 }
 
 mat-card-subtitle {
@@ -27,14 +32,15 @@ mat-card-subtitle {
 }
 
 mat-card-content {
-    padding: 50px;
+    padding: 30px;
     color: var(--furni-go-sys-light-on-background, #201A18);
     display: grid;
+    gap: 15px 0;
     grid-template-columns: 1fr 1fr;
 }
 
 app-status-tag {
-    margin-left: 20px;
+    margin-left: 35px;
 }
 
 p, span, a, h1, h2 {

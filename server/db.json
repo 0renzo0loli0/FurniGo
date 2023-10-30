@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "email": "renzololi1@hotmail.com",
+      "password": "$2a$10$ckGIGLpls/twfgKPStoJm.2cCewZmifh3/o3GZastrTw4MFH13p62",
+      "name": "renzo",
+      "lastName": "loli",
+      "role": "client",
+      "phone": "92880160",
+      "pic": null,
+      "id": 1
+    },
+    {
+      "email": "renzololi@hotmail.com",
+      "password": "$2a$10$lBAGWWnlTmT31vKMAkQ8oeupCALF2dd6nhRppp8kKxOCqapnpBXui",
+      "name": "renzo",
+      "lastName": "loli",
+      "role": "expert",
+      "phone": "928820160",
+      "pic": null,
+      "id": 2
+    }
+  ]
+}
