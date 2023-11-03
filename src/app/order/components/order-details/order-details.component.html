@@ -3,17 +3,17 @@
         <mat-card-title>{{ title }}</mat-card-title>
         <mat-card-subtitle>
             <h2>Pedido #{{ code }}</h2>
-            <app-status-tag></app-status-tag>
+            <app-status-tag [status]="status"></app-status-tag>
         </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
         <p>Fecha de entrega:</p><span>{{ limit | date }}</span>
-        <p>Precio acordado:</p><span>{{ maxBudget | currency }}</span>
+        <p>Precio estimado:</p><span>{{ maxBudget | currency }}</span>
         <ng-template [ngIf]="this.isClient()" [ngIfElse]="expert">
-            <p>Cliente: </p> <span>{{ this.getOrderClientName() }}</span>
+            <p>Experto: </p> <span>{{ this.getOrderExpertName() }}</span>
         </ng-template>
         <ng-template #expert>
-            <p>Experto: </p> <span>{{ this.getOrderExpertName() }}</span>
+            <p>Cliente: </p> <span>{{ this.getOrderClientName() }}</span>
         </ng-template>
         <p>Detalles:</p><span class="details">{{ details }}</span>
     </mat-card-content>

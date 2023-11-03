@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { IUser, USER_ROLE } from 'src/app/user/model/user.interface';
 import { OrderStatus } from '../../model/order_state.enum';
+import { AuthUtils } from 'src/app/shared/utils/auth.utils';
+import { USER_ROLE } from 'src/app/user/model/user.entity';
 
 @Component({
   selector: 'app-order-details',
@@ -28,17 +29,8 @@ export class OrderDetailsComponent {
     this.details = "Mesa de noche de madera de abeto.";
   }
 
-  getCurrentUser(): IUser | null {
-    const user = localStorage.getItem('user');
-    if(user != null){
-      return JSON.parse(user) 
-    }
-
-    return null
-  }
-
   getOrderClientName(){
-    return "Cliente1"
+    return AuthUtils.getCurrentUser()?.name
   }
 
   getOrderExpertName(){
@@ -47,7 +39,7 @@ export class OrderDetailsComponent {
   }
 
   isClient(): boolean{
-    const user = this.getCurrentUser()
+    const user = AuthUtils.getCurrentUser()
     return user != null && user.role == USER_ROLE.client
   }
 }

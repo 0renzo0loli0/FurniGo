@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
 import { UserEntity } from '../../model/user.entity';
@@ -24,7 +24,7 @@ export class SignUpComponent {
       lastName: [],
       role: [],
       phone: [],
-      pic: []
+      pic: new FormControl("https://i.pinimg.com/736x/8d/ff/c8/8dffc810ac2226282085257e73a60761.jpg")
     })
   }
 
@@ -57,8 +57,6 @@ export class SignUpComponent {
   }
 
   ngOnInit(){
-    // this.signInForm.get('pic')?.valueChanges.subscribe(value=>{
-    // })
   }
 
   signUp() {

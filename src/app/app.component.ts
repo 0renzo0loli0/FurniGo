@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser, USER_ROLE } from './user/model/user.interface';
 import { NavigationEnd, Router } from '@angular/router';
+import { AuthUtils } from './shared/utils/auth.utils';
+import { USER_ROLE, UserEntity } from './user/model/user.entity';
 
 interface NavButton {
   content: string
@@ -28,35 +29,27 @@ const routeSubtitle: { [key: string]: string } = {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  AuthUtils = AuthUtils
+
   title = 'FurniGo';
   subtitle = 'Pagina Actual'
 
   constructor(private router: Router) { }
 
+  get currentUser(){
+    return AuthUtils.getCurrentUser()
+  }
+
   ngOnInit(): void {
     this.chooseSubtitle()
   }
 
-  getCurrentUser(): IUser | null {
-    const user = this.getStorageUser();
-    if (user != null) {
-      return JSON.parse(user);
-    }
-
-    return null;
-  }
-
-  existUser(){
-    const user = this.getStorageUser()
-    return user != null
-  }
-
   getNavButtonOptions() {
-    const user = this.getCurrentUser()
+    const user = this.currentUser
     if (user != null) {
       return {
         content: user.role == USER_ROLE.client ? "Nuevo Pedido" : "Buscar Pedidos",
-        redirectTo: user.role == USER_ROLE.client ? "/order/new" : "/order/all"
+        redirectTo: user.role == USER_ROLE.client ? "/order/new" : "/order/search"
       }
     }
 
@@ -64,10 +57,6 @@ export class AppComponent implements OnInit {
       content: 'Unknown',
       redirectTo: '/sign-in'
     }
-  }
-
-  getStorageUser(): string | null{
-    return localStorage.getItem('currentUser')
   }
 
   chooseSubtitle() {
@@ -81,5 +70,11 @@ export class AppComponent implements OnInit {
         this.subtitle = routeSubtitle[url.pathname] || "Pagina Desconocida"
       }
     })
+  }
+
+  logout(event: Event){
+    localStorage.removeItem('currentUser')   
+    localStorage.removeItem('token')   
+    this.router.navigate(['/sign-in'])
   }
 }

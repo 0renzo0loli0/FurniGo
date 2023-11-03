@@ -18,8 +18,8 @@
                 <mat-grid-tile>
                     <mat-form-field>
                         <mat-label>Contraseña</mat-label>
-                        <input matInput placeholder="contraseña" formControlName="password" required>
-                        <mat-error *ngIf="password.errors?.['min-length']">La contraseña debe tener minimo 8
+                        <input matInput type="password" placeholder="contraseña" formControlName="password" required>
+                        <mat-error *ngIf="password.errors?.['minlength']">La contraseña debe tener minimo 8
                             caracteres</mat-error>
                         <mat-error *ngIf="password.errors?.['required']">La Constraseña es requerida</mat-error>
                     </mat-form-field>
@@ -42,7 +42,7 @@
                     <mat-form-field>
                         <mat-label>Telefono</mat-label>
                         <input matInput placeholder="telefono" formControlName="phone" required>
-                        <mat-error *ngIf="password.errors?.['min-length']">El telefono debe tener minimo 9
+                        <mat-error *ngIf="password.errors?.['minlength']">El telefono debe tener minimo 9
                             digitos</mat-error>
                         <mat-error *ngIf="password.errors?.['required']">El telefono es requerido</mat-error>
                     </mat-form-field>

@@ -1,10 +1,5 @@
 .mat-mdc-raised-button.mat-primary {
-    display: flex;
     height: 40px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
 
     border-radius: 100px;
     background: var(--furni-go-sys-light-primary, #A43D00);

@@ -1,3 +1,4 @@
 <button mat-raised-button color="primary">
+    <mat-icon *ngIf="this.fontIcon as icon" aria-label="Partner" [fontIcon]="icon"></mat-icon>
     <ng-content></ng-content>
 </button>

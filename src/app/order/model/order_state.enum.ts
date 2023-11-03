@@ -1,6 +1,6 @@
 export enum OrderStatus{
-    INLINE,
-    BUILDING,
-    STOPPED,
-    DONE
+    INLINE = "inline",
+    BUILDING = "building",
+    STOPPED = "stopped",
+    DONE = "done"
 }

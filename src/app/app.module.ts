@@ -17,11 +17,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatRadioModule} from '@angular/material/radio';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { ButtonComponent } from './shared/components/button/button.component';
 import { InputComponent } from './shared/components/input/input.component';
-import { LoginComponent } from './public/pages/login/login.component';
-import { RegisterComponent } from './public/pages/register/register.component';
 import { UserTagComponent } from './public/components/user-tag/user-tag.component';
 import { ContextBarComponent } from './public/components/context-bar/context-bar.component';
 import { OrderItemCardComponent } from './order/components/order-item-card/order-item-card.component';
@@ -33,6 +32,13 @@ import { UserProfileComponent } from './user/pages/user-profile/user-profile.com
 import { SignInComponent } from './user/pages/sign-in/sign-in.component';
 import { SignUpComponent } from './user/pages/sign-up/sign-up.component';
 import { AuthenticationService } from './user/services/authentication.service';
+import { CommonModule } from '@angular/common';
+import { OrderEditComponent } from './order/pages/order-edit/order-edit.component';
+import { OrderFormComponent } from './order/components/order-form/order-form.component';
+import { OrderNewComponent } from './order/pages/order-new/order-new.component';
+import { OrderViewComponent } from './order/components/order-view/order-view.component';
+import { OrderViewControlComponent } from './order/components/order-view-control/order-view-control.component';
+
 
 
 @NgModule({
@@ -43,8 +49,6 @@ import { AuthenticationService } from './user/services/authentication.service';
     // Custom imports
     ButtonComponent,
     InputComponent,
-    LoginComponent,
-    RegisterComponent,
     UserTagComponent,
     ContextBarComponent,
     OrderItemCardComponent,
@@ -54,7 +58,12 @@ import { AuthenticationService } from './user/services/authentication.service';
     OrderDetailsComponent,
     UserProfileComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    OrderEditComponent,
+    OrderFormComponent,
+    OrderNewComponent,
+    OrderViewComponent,
+    OrderViewControlComponent,
   ],
   imports: [
     // Helper imports
@@ -75,7 +84,8 @@ import { AuthenticationService } from './user/services/authentication.service';
     MatSelectModule,
     MatToolbarModule,
     MatGridListModule,
-    MatRadioModule
+    MatRadioModule,
+    MatNativeDateModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

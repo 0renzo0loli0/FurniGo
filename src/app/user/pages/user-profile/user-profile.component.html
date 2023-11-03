@@ -1,28 +1,32 @@
-<form >
-    <mat-grid-list cols="1" rowHeight="75px">
-        <mat-grid-tile>
-            <mat-form-field floatLabel="always">
-                <mat-label>Nombres</mat-label>
-                <input disabled matInput placeholder="Nombre" value="renzo Javier" />
-            </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-form-field>
-                <mat-label>Apellidos</mat-label>
-                <input disabled matInput placeholder="Apellido" value="Loli Ruiz" />
-            </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-form-field>
-                <mat-label>Telefono</mat-label>
-                <input disabled matInput placeholder="Telefono" value="928820160" />
-            </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-form-field>
-                <mat-label>Correo</mat-label>
-                <input disabled matInput placeholder="Correo" value="renzololi1@hotmail.com" />
-            </mat-form-field>
-        </mat-grid-tile>
-    </mat-grid-list>
-</form>
+<div class="page">
+    <form>
+        <mat-grid-list cols="1" rowHeight="75px">
+            <mat-grid-tile>
+                <mat-form-field floatLabel="always">
+                    <mat-label>Nombres</mat-label>
+                    <input readonly matInput placeholder="Nombre" value={{this.currentUser?.name}} />
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <mat-label>Apellidos</mat-label>
+                    <input readonly matInput placeholder="Apellido" value={{this.currentUser?.lastName}} />
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <mat-label>Telefono</mat-label>
+                    <input readonly matInput placeholder="Telefono" value={{this.currentUser?.phone}} />
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <mat-label>Correo</mat-label>
+                    <input readonly matInput placeholder="Correo" value={{this.currentUser?.email}} />
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </form>
+
+    <img [src]="this.currentUser?.pic" alt="User Profile"/>
+</div>

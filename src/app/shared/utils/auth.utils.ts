@@ -1,4 +1,5 @@
-import { IUser } from "src/app/user/model/user.interface";
+import { UserEntity } from "src/app/user/model/user.entity";
+
 export namespace AuthUtils {
 
     export const getStorageCurrentUser = (): string | null => {
@@ -17,10 +18,11 @@ export namespace AuthUtils {
         return null;
     }
 
-    export const getCurrentUser = (): IUser | null => {
-        const user = localStorage.getItem('currentUser');
-        if (user != null) {
-            return JSON.parse(user)
+    export const getCurrentUser = (): UserEntity | null => {
+        const userStorage = localStorage.getItem('currentUser');
+        if (userStorage != null) {
+            const userJSON = JSON.parse(userStorage); 
+            return UserEntity.fromObject(userJSON)
         }
 
         return null;

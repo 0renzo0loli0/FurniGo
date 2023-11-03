@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthUtils } from 'src/app/shared/utils/auth.utils';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class UserProfileComponent {
 
+  get currentUser() { return AuthUtils.getCurrentUser() }
 }

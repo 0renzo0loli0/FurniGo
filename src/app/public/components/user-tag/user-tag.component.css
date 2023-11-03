@@ -16,7 +16,6 @@
   }
   
   .greeting {
-    margin: auto;
     text-decoration: none;
     color: var(--furni-go-sys-light-on-surface, #201A18);
   }

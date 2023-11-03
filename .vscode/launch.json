@@ -15,6 +15,22 @@
       "request": "launch",
       "preLaunchTask": "npm: test",
       "url": "http://localhost:9876/debug.html"
+    },
+    {
+      "type": "firefox",
+      "request": "launch",
+      "name": "launch firefox agains localhost",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true
+    },
+    {
+      "type": "firefox",
+      "request": "attach",
+      "name": "Attach to firefox",
+      "port": 9992,
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true
     }
   ]
 }

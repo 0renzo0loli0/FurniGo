@@ -1,6 +1,8 @@
-<a [routerLink]="'/profile'"  class="user-tag">
+<div style="display: flex; flex-direction: row;">
+  <a [routerLink]="'/profile'" class="user-tag">
     <img class="profile-image" [src]="this.pic" alt="Profile Image">
     <div class="user-info">
       <div class="greeting">Hola, {{ this.name }}!</div>
     </div>
   </a>
+</div>

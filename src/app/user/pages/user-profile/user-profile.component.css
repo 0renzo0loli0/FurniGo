@@ -1,0 +1,17 @@
+mat-form-field {
+    width: 300px;
+}
+
+.page {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 80%;
+    height: 80%;
+}

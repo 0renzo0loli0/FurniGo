@@ -1,4 +1,17 @@
 <div class="order-info">
-    <app-order-details></app-order-details>
-    <div>hola</div>
+    <app-order-details
+        [code]="currentOrder.id"
+        [status]="currentOrder.state"
+        [limit]="currentOrder.limit"
+        [title]="currentOrder.title"
+        [maxBudget]="currentOrder.estimate"
+        [details]="currentOrder.details"
+        [user]="this.currentUser?.name || 'Unknown user'"
+    ></app-order-details>
+    <app-order-view-control [objPath]="currentOrder.objPath"></app-order-view-control>
 </div>
+<button mat-icon-button class="edit-button" routerLink="/order/edit" [queryParams]="{code: currentOrder.id}">
+    <mat-icon aria-label="Button Edit">
+        edit
+    </mat-icon>
+</button>

@@ -1,0 +1,20 @@
+mat-form-field {
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    padding-block: 30px;
+}
+
+form .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+form .buttons app-button {
+    margin-left: 10px;
+}

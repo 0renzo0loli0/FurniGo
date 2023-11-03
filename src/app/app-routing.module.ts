@@ -7,28 +7,34 @@ import { UserProfileComponent } from './user/pages/user-profile/user-profile.com
 import { SignUpComponent } from './user/pages/sign-up/sign-up.component';
 import { SignInComponent } from './user/pages/sign-in/sign-in.component';
 import { authGuard } from './user/guards/auth.guard';
+import { OrderEditComponent } from './order/pages/order-edit/order-edit.component';
+import { OrderNewComponent } from './order/pages/order-new/order-new.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'order/all', pathMatch: 'full', },
-  { path: 'sign-in', component: SignInComponent },
-  { path: 'sign-up', component: SignUpComponent },
-  { path: 'profile', component: UserProfileComponent, canActivate: [authGuard] },
   {
-    path: 'order', children: [
-      { path: 'all', component: OrderAllComponent },
-      { path: 'info', component: OrderInfoComponent },
-      { path: 'new', component: ButtonComponent },
-      { path: 'edit', component: ButtonComponent },
-      { path: 'search', component: ButtonComponent },],
-      canActivate: [authGuard]
-  },
-  {
-    path: 'offer', children: [
-      { path: 'all', component: ButtonComponent },
-      { path: 'info', component: ButtonComponent },
-      { path: 'new', component: ButtonComponent },
-      { path: 'edit', component: ButtonComponent },],
-      canActivate: [authGuard]
+    path: '',
+    children: [
+      { path: '', redirectTo: 'order/all', pathMatch: 'full' },
+      { path: 'sign-in', component: SignInComponent },
+      { path: 'sign-up', component: SignUpComponent },
+      { path: 'profile', component: UserProfileComponent },
+      {
+        path: 'order', children: [
+          { path: 'all', component: OrderAllComponent },
+          { path: 'info', component: OrderInfoComponent },
+          { path: 'new', component: OrderNewComponent },
+          { path: 'edit', component: OrderEditComponent },
+          { path: 'search', component: ButtonComponent },],
+      },
+      {
+        path: 'offer', children: [
+          { path: 'all', component: ButtonComponent },
+          { path: 'info', component: ButtonComponent },
+          { path: 'new', component: ButtonComponent },
+          { path: 'edit', component: ButtonComponent },],
+      }
+    ],
+    canActivate: [authGuard]
   }
 ];
 

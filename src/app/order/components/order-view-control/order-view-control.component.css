@@ -1,0 +1,14 @@
+mat-card {
+    width: 550px;
+    height: 442px;
+
+    background: var(--furni-go-sys-light-surface, #FFF8F6);
+}
+
+mat-card-content{
+    height: 100%;
+}
+
+app-button {
+    margin-block: 20px;
+}

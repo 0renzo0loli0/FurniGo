@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
 import { AuthUtils } from 'src/app/shared/utils/auth.utils';
@@ -19,12 +19,9 @@ export class SignInComponent {
               private authService: AuthenticationService,
               private router: Router) { 
                 this.signInForm = this.builder.group({
-                  email:     [],
-                  password: []
+                  email: new FormControl('', [Validators.email, Validators.required]),
+                  password: new FormControl('', [Validators.minLength(8), Validators.required]),
                 })
-                if(AuthUtils.existUser() && AuthUtils.existToken()) {
-                  router.navigate(["/"])
-                }
               }
 
   get email(){

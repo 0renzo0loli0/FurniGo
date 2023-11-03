@@ -3,9 +3,10 @@
         *ngFor="let order of orders" 
         [title]="order.title" 
         [estimate]="order.estimate"
-        [code]="order.orderID"
+        [code]="order.id"
         [status]="order.state"
         [maxDate]="order.limit"
+        [objPath]="order.objPath"
         class="item-card"></app-order-item-card>
 </div>
 

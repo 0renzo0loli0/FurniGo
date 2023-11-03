@@ -2,23 +2,26 @@
   "users": [
     {
       "email": "renzololi1@hotmail.com",
-      "password": "$2a$10$ckGIGLpls/twfgKPStoJm.2cCewZmifh3/o3GZastrTw4MFH13p62",
+      "password": "$2a$10$ZWtcqwCSgPF4k0upa1l2k.w7dPl1vfZ07k81488HVGNc6WxAT1TFW",
       "name": "renzo",
       "lastName": "loli",
       "role": "client",
-      "phone": "92880160",
-      "pic": null,
+      "phone": "+51-928820160",
+      "pic": "https://i.pinimg.com/736x/8d/ff/c8/8dffc810ac2226282085257e73a60761.jpg",
       "id": 1
-    },
-    {
-      "email": "renzololi@hotmail.com",
-      "password": "$2a$10$lBAGWWnlTmT31vKMAkQ8oeupCALF2dd6nhRppp8kKxOCqapnpBXui",
-      "name": "renzo",
-      "lastName": "loli",
-      "role": "expert",
-      "phone": "928820160",
-      "pic": null,
-      "id": 2
     }
-  ]
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "clientID": 1,
+      "estimate": 150,
+      "state": "inline",
+      "title": "mi nuevo mueble",
+      "limit": "2023-11-04T05:00:00.000Z",
+      "details": "mis detalles 2.0",
+      "objPath": "https://threejs.org/examples/models/fbx/Samba%20Dancing.fbx"
+    }
+  ],
+  "offers": []
 }

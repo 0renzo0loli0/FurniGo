@@ -2,19 +2,29 @@
   <mat-toolbar>
     <a routerLink="/">FurniGo</a>
     <div class="divider"></div>
-    <div class="buttons" *ngIf="this.existUser()">
-      <app-button routerLink="/order/all">Mis Pedidos</app-button>
-      <app-button [routerLink]="this.getNavButtonOptions().redirectTo">{{this.getNavButtonOptions().content}}</app-button>
-    </div>
-    <div class="buttons" *ngIf="!this.existUser()">
-      <app-button routerLink="/sign-in">Iniciar Sesion</app-button>
-      <app-button routerLink="/sign-up">Registrarse</app-button>
-    </div>
-    <app-user-tag *ngIf="this.existUser()" [name]="getCurrentUser()?.name || 'Unknown'"></app-user-tag>
+    <div></div>
+    <ng-container *ngIf="AuthUtils.getCurrentUser(); else elseButtons; let user">
+      <div class="buttons">
+        <app-button routerLink="/order/all">Mis Pedidos</app-button>
+        <app-button
+          [routerLink]="this.getNavButtonOptions().redirectTo">{{this.getNavButtonOptions().content}}</app-button>
+        <app-user-tag [name]="user.name" [pic]="user.pic">
+        </app-user-tag>
+        <button aria-hidden="false" aria-label="Logout Auth"  mat-icon-button (click)="logout($event)">
+          <mat-icon fontIcon="logout"></mat-icon>
+        </button>
+      </div>
+    </ng-container>
+    <ng-template #elseButtons>
+      <div class="buttons">
+        <app-button routerLink="/sign-in">Iniciar Sesion</app-button>
+        <app-button routerLink="/sign-up">Registrarse</app-button>
+      </div>
+    </ng-template>
   </mat-toolbar>
   <app-context-bar [title]="this.subtitle" />
 </div>
 <main>
-<div class="fix-navbar"></div>
-<router-outlet></router-outlet>
+  <div class="fix-navbar"></div>
+  <router-outlet></router-outlet>
 </main>

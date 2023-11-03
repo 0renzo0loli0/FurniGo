@@ -19,15 +19,14 @@
                     <mat-form-field>
                         <mat-label>Contraseña</mat-label>
                         <input matInput type="password" placeholder="contraseña" formControlName="password" required>
-                        <mat-error *ngIf="password.errors?.['min-length']">La contraseña debe tener minimo 8
+                        <mat-error *ngIf="password.errors?.['minlength']">La contraseña debe tener minimo 8
                             caracteres</mat-error>
                         <mat-error *ngIf="password.errors?.['required']">La Constraseña es requerida</mat-error>
                     </mat-form-field>
                 </mat-grid-tile>
             </mat-grid-list>
             <mat-card-actions>
-                <app-button (click)="signIn()">Inisiar sesion</app-button>
-                <!-- <app-button (click)="cancelSignUp()">Cancel</app-button> -->
+                <app-button (click)="signIn()">Iniciar sesion</app-button>
             </mat-card-actions>
         </form>
     </mat-card>

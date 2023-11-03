@@ -1,0 +1,10 @@
+<div class="container">
+    <app-order-form
+        leftButtonTitle="Publicar Pedido"
+        rightButtonTitle="Cancelar Pedido"
+        (leftButtonAction)="this.onSaveChanges($event)"
+        (rightButtonAction)="this.onCancelChanges($event)"
+        (afterTyping)="this.onAfterTyping($event)"
+    ></app-order-form>
+    <app-order-view-control [objPath]="this.objPath"></app-order-view-control>
+</div>

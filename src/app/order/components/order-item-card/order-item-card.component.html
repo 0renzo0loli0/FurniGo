@@ -17,5 +17,5 @@
         <app-button [routerLink]="'/order/info'" [queryParams]="{'code': this.code}">Ver Más</app-button>
       </mat-card-actions>
     </div>
-    <img class="media-placeholder" [src]="imgPath" alt="3D Viewer" />
+    <app-order-view [objPath]="this.objPath"></app-order-view>
   </mat-card>

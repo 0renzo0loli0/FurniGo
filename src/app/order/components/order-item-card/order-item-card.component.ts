@@ -13,4 +13,5 @@ export class OrderItemCardComponent {
   @Input() status: OrderStatus = OrderStatus.INLINE
   @Input() estimate: number = 250
   @Input() imgPath: string = "https://picsum.photos/200/300";
+  @Input() objPath: string = ""
 }

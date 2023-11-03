@@ -1,0 +1,51 @@
+<form [formGroup]="this.orderForm" (submit)="null">
+    <mat-grid-list cols="1" rowHeight="4.8rem">
+        <mat-grid-tile>
+            <mat-form-field floatLabel="always">
+                <mat-label>Nombre del pedido</mat-label>
+                <input matInput formControlName="title">
+                <mat-error *ngIf="title.errors?.['required']">El titulo es requerido</mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-form-field floatLabel="always">
+                <mat-label>Presupuesto</mat-label>
+                <input type="number" matInput formControlName="price">
+                <mat-error *ngIf="price.errors?.['min']">El minimo de precio es de 0</mat-error>
+                <mat-error *ngIf="price.errors?.['required']">El precio es requerido</mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-form-field floatLabel="always">
+                <mat-label>Plazo de entrega</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="limit">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="limit.errors?.['required']">El plazo es requerido</mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-form-field floatLabel="always">
+                <mat-label>Url del modelo 3d</mat-label>
+                <input #objRef matInput formControlName="objPath">
+                <mat-error *ngIf="objPath.errors?.['required']">El modelo es requerido</mat-error>
+                <mat-error *ngIf="objPath.errors?.['pattern']">El url es invalido</mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="2">
+            <mat-form-field floatLabel="always">
+                <mat-label>Detalles</mat-label>
+                <textarea rows="4" style="resize: none;" matInput formControlName="details"></textarea>
+                <mat-error *ngIf="details.errors?.['required']">Los detalles son requeridos</mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <div class="buttons">
+        <app-button (click)="this.onLeftClick($event)" fontIcon="check">
+            {{this.leftButtonTitle}}
+        </app-button>
+        <app-button (click)="this.onRightClick($event)" fontIcon="close">
+            {{this.rightButtonTitle}}
+        </app-button>
+    </div>
+</form>
