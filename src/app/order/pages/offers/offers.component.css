@@ -1,0 +1,17 @@
+:host {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    grid-template-rows: 100%;
+
+    justify-content: center;
+    overflow: hidden;
+}
+
+app-order-details {
+    display: flex;
+    justify-content: center;
+}
+
+.list {
+    overflow-y: auto;
+}

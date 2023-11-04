@@ -10,11 +10,15 @@
         <p>Fecha de entrega:</p><span>{{ limit | date }}</span>
         <p>Precio estimado:</p><span>{{ maxBudget | currency }}</span>
         <ng-template [ngIf]="this.isClient()" [ngIfElse]="expert">
-            <p>Experto: </p> <span>{{ this.getOrderExpertName() }}</span>
+            <p>Experto: </p> <span>{{ this.nextUserName }}</span>
         </ng-template>
         <ng-template #expert>
-            <p>Cliente: </p> <span>{{ this.getOrderClientName() }}</span>
+            <p>Cliente: </p> <span>{{ this.nextUserName }}</span>
         </ng-template>
         <p>Detalles:</p><span class="details">{{ details }}</span>
     </mat-card-content>
+    <mat-card-actions align="end" *ngIf="!this.wasAccepted">
+        <app-button fontIcon="list" routerLink="/order/offers" [queryParams]="{code: this.code}">Ver
+            Ofertas</app-button>
+    </mat-card-actions>
 </mat-card>

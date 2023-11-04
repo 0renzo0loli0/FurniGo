@@ -17,10 +17,7 @@ const routeSubtitle: { [key: string]: string } = {
   "/order/new": "Nueva Orden",
   "/order/edit": "Editar Orden",
   "/order/search": "Buscar Ordenes",
-  "/offer/all": "Mis Ofertas",
-  "/offer/info": "Mi Oferta",
-  "/offer/new": "Nueva Oferta",
-  "/offer/edit": "Editar Oferta"
+  "/order/offers": "Mis Ofertas",
 }
 
 @Component({

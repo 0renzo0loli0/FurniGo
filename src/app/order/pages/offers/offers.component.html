@@ -1,0 +1,15 @@
+<app-order-details [code]="currentOrder.id" [status]="currentOrder.state" [limit]="currentOrder.limit"
+    [title]="currentOrder.title" [maxBudget]="currentOrder.estimate" [details]="currentOrder.details"
+    [wasAccepted]="true" nextUserName="En Cola"></app-order-details>
+<div class="list">
+    <mat-grid-list cols="1" rowHeight="150px">
+        <mat-grid-tile *ngFor="let userOffer of this.userOffers">
+            <app-offer-card [price]="userOffer.offer.price" [limit]="userOffer.offer.limit"
+                [title]="userOffer.user.name" [pic]="userOffer.user.pic"
+                (click)="this.acceptOffer(userOffer.offer)"></app-offer-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+<!-- <app-order-view-control
+    [objPath]="this.currentOrder.objPath"
+></app-order-view-control> -->

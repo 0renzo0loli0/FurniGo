@@ -9,6 +9,7 @@ import { SignInComponent } from './user/pages/sign-in/sign-in.component';
 import { authGuard } from './user/guards/auth.guard';
 import { OrderEditComponent } from './order/pages/order-edit/order-edit.component';
 import { OrderNewComponent } from './order/pages/order-new/order-new.component';
+import { OffersComponent } from './order/pages/offers/offers.component';
 
 const routes: Routes = [
   {
@@ -24,14 +25,9 @@ const routes: Routes = [
           { path: 'info', component: OrderInfoComponent },
           { path: 'new', component: OrderNewComponent },
           { path: 'edit', component: OrderEditComponent },
-          { path: 'search', component: ButtonComponent },],
-      },
-      {
-        path: 'offer', children: [
-          { path: 'all', component: ButtonComponent },
-          { path: 'info', component: ButtonComponent },
-          { path: 'new', component: ButtonComponent },
-          { path: 'edit', component: ButtonComponent },],
+          { path: 'search', component: ButtonComponent },
+          { path: 'offers', component: OffersComponent},
+        ],
       }
     ],
     canActivate: [authGuard]

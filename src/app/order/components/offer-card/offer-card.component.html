@@ -1,0 +1,13 @@
+<mat-card>
+    <img [src]="this.pic">
+    <mat-card-content>
+        <h2>{{this.title}}</h2>
+        <p>Precio: {{this.price | currency}}</p>
+        <p>Fecha de Entrega: {{this.limit | date}}</p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <app-button>
+            Aceptar Oferta
+        </app-button>
+    </mat-card-actions>
+</mat-card>

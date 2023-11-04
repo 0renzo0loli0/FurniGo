@@ -9,7 +9,7 @@ type StatusFill = {
 const STATUS_DATA: {[key: string]: StatusFill} = {
   [OrderStatus.INLINE]: {status: 'En Cola', color: '#675F30'},
   [OrderStatus.BUILDING]: {status: 'En Fabricacion', color: '#EFE3A8'},
-  [OrderStatus.STOPPED]: {status: 'Detenido', color: '#BA1A1A'},
+  [OrderStatus.FINISHED]: {status: 'Finalizando', color: '#BA1A1A'},
   [OrderStatus.DONE]: {status: 'Hecho', color: '#FFB597'},
 };
 

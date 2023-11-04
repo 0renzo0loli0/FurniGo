@@ -4,6 +4,7 @@ import { OrderEntity } from '../../model/order.entity';
 import { AuthUtils } from 'src/app/shared/utils/auth.utils';
 import { OrderService } from '../../services/order.service';
 import { USER_ROLE } from 'src/app/user/model/user.entity';
+import { OfferService } from '../../services/offer.service';
 
 @Component({
   selector: 'app-order-all',
@@ -13,7 +14,8 @@ import { USER_ROLE } from 'src/app/user/model/user.entity';
 export class OrderAllComponent implements OnInit {
   orders: Array<OrderEntity> = []
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService,
+    private offerService: OfferService) { }
 
   ngOnInit(): void {
     const user = this.currentuser
@@ -21,20 +23,19 @@ export class OrderAllComponent implements OnInit {
 
     if (user.role == USER_ROLE.client) {
       this.orderService.getAll().subscribe(data => {
-        console.log(data)
         this.orders = data.filter(order => { return order.clientID == user.id })
       })
-    } 
+      return;
+    }
 
-    // !TODO: AÑADIR CUANDO LA LOGICA DE LA OFFERTA ESTE LISTA
-    // else if (user.role == USER_ROLE.expert) {
-    //   this.offerService.getAll().subscribe(data => {
-    //     const expertOffers = data.map(offer => offer.expertID).filter(expertID => expertID == user.id)
-    //     this.orderService.getAll().subscribe(data => {
-    //       this.orders = data.filter(order => { return expertOffers.includes(order.orderID) })
-    //     })
-    //   })
-    // }
+    this.offerService.getAll().subscribe(data => {
+      const expertOffers = data.filter(offer => offer.expertID == user.id)
+      this.orderService.getAll().subscribe(data => {
+        this.orders = data.filter(order => { 
+          return Boolean(expertOffers.find(offer => offer.orderID == order.id))
+         })
+      })
+    })
   }
 
   get currentuser() {

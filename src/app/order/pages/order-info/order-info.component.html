@@ -6,11 +6,12 @@
         [title]="currentOrder.title"
         [maxBudget]="currentOrder.estimate"
         [details]="currentOrder.details"
-        [user]="this.currentUser?.name || 'Unknown user'"
+        [wasAccepted]="this.wasAccepted"
+        [nextUserName]="this.currenShowUserName"
     ></app-order-details>
     <app-order-view-control [objPath]="currentOrder.objPath"></app-order-view-control>
 </div>
-<button mat-icon-button class="edit-button" routerLink="/order/edit" [queryParams]="{code: currentOrder.id}">
+<button *ngIf="this.isClient()" mat-icon-button class="edit-button" routerLink="/order/edit" [queryParams]="{code: currentOrder.id}">
     <mat-icon aria-label="Button Edit">
         edit
     </mat-icon>
