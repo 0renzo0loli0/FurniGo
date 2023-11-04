@@ -1,3 +1,15 @@
+# Install Dependencies
+
+-- npm i
+
+# Start Server
+
+-- npm run test-server
+
+# Start angular development
+
+-- npm start
+
 # FurniGo
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
