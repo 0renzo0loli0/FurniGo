@@ -14,6 +14,7 @@ import { OrderSearchComponent } from './order/pages/order-search/order-search.co
 import { OrderOfferComponent } from './order/pages/order-offer/order-offer.component';
 import { clientGuard } from './user/guards/client.guard';
 import { expertGuard } from './user/guards/expert.guard';
+import { PageNotFoundComponent } from './public/pages/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,9 @@ const routes: Routes = [
       }
     ],
     canActivate: [authGuard]
+  },
+  {
+    path: '**', component: PageNotFoundComponent
   }
 ];
 

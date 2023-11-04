@@ -43,7 +43,6 @@
                         <mat-label>Telefono</mat-label>
                         <input matInput placeholder="telefono" formControlName="phone" required>
                         <mat-error *ngIf="phone.errors?.['required']">El telefono es requerido</mat-error>
-                        <mat-error *ngIf="phone.errors?.['pattern']">No es un telefono valido</mat-error>
                     </mat-form-field>
                 </mat-grid-tile>
                 <mat-grid-tile>

@@ -1,4 +1,4 @@
-<div class="card-list">
+<div class="card-list" *ngIf="this.orders.length != 0">
     <app-order-item-card 
         *ngFor="let order of orders" 
         [title]="order.title" 
@@ -9,5 +9,6 @@
         [objPath]="order.objPath"
         [isWaitingAccept]="order.state == 'waiting' || order.state == 'inline'"
         class="item-card"></app-order-item-card>
-</div>
 
+</div>
+<app-nothing-there></app-nothing-there>

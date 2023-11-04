@@ -42,6 +42,8 @@ import { OffersComponent } from './order/pages/offers/offers.component';
 import { OfferCardComponent } from './order/components/offer-card/offer-card.component';
 import { OrderSearchComponent } from './order/pages/order-search/order-search.component';
 import { OrderOfferComponent } from './order/pages/order-offer/order-offer.component';
+import { PageNotFoundComponent } from './public/pages/page-not-found/page-not-found.component';
+import { NothingThereComponent } from './shared/components/nothing-there/nothing-there.component';
 
 
 
@@ -72,6 +74,8 @@ import { OrderOfferComponent } from './order/pages/order-offer/order-offer.compo
     OfferCardComponent,
     OrderSearchComponent,
     OrderOfferComponent,
+    PageNotFoundComponent,
+    NothingThereComponent,
   ],
   imports: [
     // Helper imports

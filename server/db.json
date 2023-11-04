@@ -1,11 +1,5 @@
 {
-  "users": [
-
-  ],
-  "orders": [
- 
-  ],
-  "offers": [
-
-  ]
+  "users": [],
+  "orders": [],
+  "offers": []
 }

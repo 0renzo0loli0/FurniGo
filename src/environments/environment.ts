@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    basePath: "http://localhost:5000/api/v1"
+    basePath: "https://furnigo.onrender.com/api/v1"
 };
 
 

@@ -23,7 +23,7 @@ export class SignUpComponent {
       name: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       role: new FormControl('', [Validators.required]),
-      phone: new FormControl('+51-', [Validators.required, Validators.pattern('^\+\d{2}-\d{9}$')]),
+      phone: new FormControl('+51-', [Validators.required]),
       pic: new FormControl("https://i.pinimg.com/736x/8d/ff/c8/8dffc810ac2226282085257e73a60761.jpg")
     })
   }
