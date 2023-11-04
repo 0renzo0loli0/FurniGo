@@ -11,6 +11,7 @@ const STATUS_DATA: {[key: string]: StatusFill} = {
   [OrderStatus.BUILDING]: {status: 'En Fabricacion', color: '#EFE3A8'},
   [OrderStatus.FINISHED]: {status: 'Finalizando', color: '#BA1A1A'},
   [OrderStatus.DONE]: {status: 'Hecho', color: '#FFB597'},
+  [OrderStatus.CANCELLED]: {status: 'Cancelado', color: '#FF0000'}
 };
 
 @Component({

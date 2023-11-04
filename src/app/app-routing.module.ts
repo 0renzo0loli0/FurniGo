@@ -12,6 +12,8 @@ import { OrderNewComponent } from './order/pages/order-new/order-new.component';
 import { OffersComponent } from './order/pages/offers/offers.component';
 import { OrderSearchComponent } from './order/pages/order-search/order-search.component';
 import { OrderOfferComponent } from './order/pages/order-offer/order-offer.component';
+import { clientGuard } from './user/guards/client.guard';
+import { expertGuard } from './user/guards/expert.guard';
 
 const routes: Routes = [
   {
@@ -25,11 +27,11 @@ const routes: Routes = [
         path: 'order', children: [
           { path: 'all', component: OrderAllComponent },
           { path: 'info', component: OrderInfoComponent },
-          { path: 'new', component: OrderNewComponent },
-          { path: 'edit', component: OrderEditComponent },
-          { path: 'search', component: OrderSearchComponent },
-          { path: 'offer', component: OrderOfferComponent },
-          { path: 'offers', component: OffersComponent},
+          { path: 'new', component: OrderNewComponent, canActivate: [clientGuard] },
+          { path: 'offers', component: OffersComponent, canActivate: [clientGuard] },
+          { path: 'edit', component: OrderEditComponent, canActivate: [expertGuard] },
+          { path: 'search', component: OrderSearchComponent, canActivate: [expertGuard] },
+          { path: 'offer', component: OrderOfferComponent, canActivate: [expertGuard] },
         ],
       }
     ],

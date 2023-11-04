@@ -1,74 +1,11 @@
 {
   "users": [
-    {
-      "email": "renzololi1@hotmail.com",
-      "password": "$2a$10$ZWtcqwCSgPF4k0upa1l2k.w7dPl1vfZ07k81488HVGNc6WxAT1TFW",
-      "name": "renzo",
-      "lastName": "loli",
-      "role": "client",
-      "phone": "+51-928820160",
-      "pic": "https://i.pinimg.com/736x/8d/ff/c8/8dffc810ac2226282085257e73a60761.jpg",
-      "id": 1
-    },
-    {
-      "email": "renzololi@hotmail.com",
-      "password": "$2a$10$y7rpzWBb6ZliwQsvHlgj3.sUmrI68o.ywlboDOPTKzBnEomrrPPsS",
-      "name": "maicol",
-      "lastName": "jimenez",
-      "role": "expert",
-      "phone": "+51-928820160",
-      "pic": "https://i.pinimg.com/736x/8d/ff/c8/8dffc810ac2226282085257e73a60761.jpg",
-      "id": 2
-    }
+
   ],
   "orders": [
-    {
-      "id": 1,
-      "clientID": 1,
-      "estimate": 550,
-      "state": "building",
-      "title": "mi nuevo mueble",
-      "limit": "2023-11-04 00:53:37",
-      "details": "mis detalles 2.0",
-      "objPath": "https://threejs.org/examples/models/fbx/Samba%20Dancing.fbx"
-    },
-    {
-      "title": "pedido 1",
-      "estimate": 150,
-      "limit": "2023-11-04T06:28:17.648Z",
-      "details": "pedido 1",
-      "clientID": 1,
-      "state": "inline",
-      "objPath": "https://threejs.org/examples/models/fbx/Samba%20Dancing.fbx",
-      "id": 2
-    },
-    {
-      "title": "pedido 2",
-      "estimate": 150,
-      "limit": "2023-11-04T06:28:38.801Z",
-      "details": "pedido 2",
-      "clientID": 1,
-      "state": "inline",
-      "objPath": "https://threejs.org/examples/models/fbx/Samba%20Dancing.fbx",
-      "id": 3
-    }
+ 
   ],
   "offers": [
-    {
-      "id": 1,
-      "orderID": 1,
-      "expertID": 2,
-      "price": 550,
-      "accepted": true,
-      "limit": "2023-11-04 00:53:37"
-    },
-    {
-      "orderID": 2,
-      "expertID": 2,
-      "price": 400,
-      "limit": "2023-11-30T05:00:00.000Z",
-      "accepted": false,
-      "id": 2
-    }
+
   ]
 }

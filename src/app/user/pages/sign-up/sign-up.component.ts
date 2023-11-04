@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
 import { UserEntity } from '../../model/user.entity';
@@ -18,12 +18,12 @@ export class SignUpComponent {
     private authService: AuthenticationService,
     private router: Router) {
     this.signInForm = this.builder.group({
-      email: [],
-      password: [],
-      name: [],
-      lastName: [],
-      role: [],
-      phone: [],
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      name: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+      role: new FormControl('', [Validators.required]),
+      phone: new FormControl('+51-', [Validators.required, Validators.pattern('^\+\d{2}-\d{9}$')]),
       pic: new FormControl("https://i.pinimg.com/736x/8d/ff/c8/8dffc810ac2226282085257e73a60761.jpg")
     })
   }

@@ -21,13 +21,19 @@ export class OrderSearchComponent {
     const user = this.currentuser
     if (!user) return
 
-    this.offerService.getAll().subscribe(reqOffer => {
-      const offers = reqOffer.filter(offer => offer.accepted)
-      this.orderService.getAll().subscribe(reqOrder => {
-        this.orders = reqOrder.filter(order => { 
-          const oOffers = offers.filter(offer => offer.orderID == order.id);
-          return (oOffers.length == 0) || (offers.some(offer => !offer.accepted))
-         })
+    this.orderService.getAll().subscribe(reqOrder => {
+      this.offerService.getAll().subscribe(reqOffer => {
+        this.orders = reqOrder.filter(order => {
+          if(order.state == OrderStatus.CANCELLED || order.state == OrderStatus.FINISHED || order.state == OrderStatus.DONE) return false;
+          const offers = reqOffer.filter(offer=> offer.orderID == order.id)
+          if(offers.length == 0) return true;
+
+          if(offers.some(offer=>offer.accepted || offer.expertID == user.id)) return false;
+
+          if(offers.some(offer=> offer.expertID == user.id)) return false;
+
+          return true;
+        })
       })
     })
   }
