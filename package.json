@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "test-server": "cd server && json-server-auth -H 100.20.92.101 --watch db.json --routes routes.json"
+    "test-server": "cd server && json-server-auth -H 0.0.0.0 --watch db.json --routes routes.json"
   },
   "private": true,
   "dependencies": {
