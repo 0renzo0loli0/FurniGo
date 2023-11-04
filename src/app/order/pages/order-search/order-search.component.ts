@@ -7,35 +7,27 @@ import { USER_ROLE } from 'src/app/user/model/user.entity';
 import { OfferService } from '../../services/offer.service';
 
 @Component({
-  selector: 'app-order-all',
-  templateUrl: './order-all.component.html',
-  styleUrls: ['./order-all.component.css']
+  selector: 'app-order-search',
+  templateUrl: './order-search.component.html',
+  styleUrls: ['./order-search.component.css']
 })
-export class OrderAllComponent implements OnInit {
+export class OrderSearchComponent {
   orders: Array<OrderEntity> = []
 
   constructor(private orderService: OrderService,
     private offerService: OfferService) { }
 
   ngOnInit(): void {
-    this.orders = []
-
     const user = this.currentuser
     if (!user) return
 
-    if (user.role == USER_ROLE.client) {
-      this.orderService.getAll().subscribe(data => {
-        this.orders = data.filter(order => { return order.clientID == user.id })
-      })
-      return;
-    }
-
     this.offerService.getAll().subscribe(reqOffer => {
-      const expertOffers = reqOffer.filter(offer => offer.expertID == user.id)
+      const offers = reqOffer.filter(offer => offer.accepted)
       this.orderService.getAll().subscribe(reqOrder => {
-        this.orders = reqOrder
-          .filter(order =>
-            expertOffers.some(offer => offer.orderID == order.id))
+        this.orders = reqOrder.filter(order => { 
+          const oOffers = offers.filter(offer => offer.orderID == order.id);
+          return (oOffers.length == 0) || (offers.some(offer => !offer.accepted))
+         })
       })
     })
   }

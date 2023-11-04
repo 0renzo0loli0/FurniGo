@@ -10,6 +10,8 @@ import { authGuard } from './user/guards/auth.guard';
 import { OrderEditComponent } from './order/pages/order-edit/order-edit.component';
 import { OrderNewComponent } from './order/pages/order-new/order-new.component';
 import { OffersComponent } from './order/pages/offers/offers.component';
+import { OrderSearchComponent } from './order/pages/order-search/order-search.component';
+import { OrderOfferComponent } from './order/pages/order-offer/order-offer.component';
 
 const routes: Routes = [
   {
@@ -25,7 +27,8 @@ const routes: Routes = [
           { path: 'info', component: OrderInfoComponent },
           { path: 'new', component: OrderNewComponent },
           { path: 'edit', component: OrderEditComponent },
-          { path: 'search', component: ButtonComponent },
+          { path: 'search', component: OrderSearchComponent },
+          { path: 'offer', component: OrderOfferComponent },
           { path: 'offers', component: OffersComponent},
         ],
       }

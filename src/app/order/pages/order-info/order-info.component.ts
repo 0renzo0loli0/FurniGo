@@ -7,6 +7,7 @@ import { OfferService } from '../../services/offer.service';
 import { OfferEntity } from '../../model/offer-entity';
 import { USER_ROLE } from 'src/app/user/model/user.entity';
 import { UserService } from 'src/app/user/services/user.service';
+import { OrderStatus } from '../../model/order_state.enum';
 
 @Component({
   selector: 'app-order-info',
@@ -15,10 +16,10 @@ import { UserService } from 'src/app/user/services/user.service';
 })
 export class OrderInfoComponent {
   currentOrder: OrderEntity = new OrderEntity();
-  currentOffers: Array<OfferEntity> = []
   currenShowUserName: string = "Unknown";
 
   wasAccepted: boolean = true;
+  expertExistOffer: boolean = false;
 
   get currentUser() {
     return AuthUtils.getCurrentUser()
@@ -44,15 +45,19 @@ export class OrderInfoComponent {
         this.userService.getOne(this.currentOrder.clientID).subscribe(reqUser => {
           this.currenShowUserName = reqUser.name;
         })
+        this.offerService.getAll().subscribe(reqOffer => {
+          this.expertExistOffer = reqOffer
+            .some(offer => offer.expertID == user.id && offer.orderID == this.currentOrder.id)
+        })
         return
       }
 
       this.offerService.getAll().subscribe(reqOffer => {
-        this.currentOffers = reqOffer.filter(offer => offer.orderID == this.currentOrder.id);
-        const sOffer = this.currentOffers.find(offer => offer.accepted)
-        this.wasAccepted = Boolean(sOffer);
-        if (sOffer) {
-          this.userService.getOne(sOffer.expertID).subscribe(reqUser => {
+        const offers = reqOffer.filter(offer => offer.orderID == this.currentOrder.id);
+        const acceptedOffer = offers.find(offer => offer.accepted)
+        this.wasAccepted = Boolean(acceptedOffer);
+        if (acceptedOffer) {
+          this.userService.getOne(acceptedOffer.expertID).subscribe(reqUser => {
             this.currenShowUserName = reqUser.name;
           })
         }
@@ -68,9 +73,10 @@ export class OrderInfoComponent {
 
     const role = user.role
 
-    if (role == USER_ROLE.client) {
+    if (role == USER_ROLE.client && this.currentOrder.state == OrderStatus.INLINE) {
       return "En Cola"
     }
+
     return this.currenShowUserName
   }
 

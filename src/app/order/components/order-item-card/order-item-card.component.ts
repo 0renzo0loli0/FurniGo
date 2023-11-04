@@ -14,4 +14,5 @@ export class OrderItemCardComponent {
   @Input() estimate: number = 250
   @Input() imgPath: string = "https://picsum.photos/200/300";
   @Input() objPath: string = ""
+  @Input() isWaitingAccept: boolean = false;
 }

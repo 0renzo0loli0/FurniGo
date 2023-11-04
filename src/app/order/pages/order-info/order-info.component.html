@@ -1,18 +1,21 @@
 <div class="order-info">
-    <app-order-details
-        [code]="currentOrder.id"
-        [status]="currentOrder.state"
-        [limit]="currentOrder.limit"
-        [title]="currentOrder.title"
-        [maxBudget]="currentOrder.estimate"
-        [details]="currentOrder.details"
-        [wasAccepted]="this.wasAccepted"
-        [nextUserName]="this.currenShowUserName"
-    ></app-order-details>
+    <app-order-details [code]="currentOrder.id" [status]="currentOrder.state" [limit]="currentOrder.limit"
+        [title]="currentOrder.title" [maxBudget]="currentOrder.estimate" [details]="currentOrder.details"
+        [wasAccepted]="this.wasAccepted" [nextUserName]="this.getShowUser()"></app-order-details>
     <app-order-view-control [objPath]="currentOrder.objPath"></app-order-view-control>
 </div>
-<button *ngIf="this.isClient()" mat-icon-button class="edit-button" routerLink="/order/edit" [queryParams]="{code: currentOrder.id}">
+<button *ngIf="this.isClient(); else expert" mat-icon-button class="edit-button" routerLink="/order/edit"
+    [queryParams]="{code: currentOrder.id}">
     <mat-icon aria-label="Button Edit">
         edit
     </mat-icon>
 </button>
+<ng-template #expert>
+    <ng-container *ngIf="!this.expertExistOffer">
+        <button mat-icon-button class="edit-button" routerLink="/order/offer" [queryParams]="{code: currentOrder.id}">
+            <mat-icon aria-label="Button Accept">
+                check
+            </mat-icon>
+        </button>
+    </ng-container>
+</ng-template>

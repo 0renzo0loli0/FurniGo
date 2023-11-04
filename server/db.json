@@ -31,6 +31,26 @@
       "limit": "2023-11-04 00:53:37",
       "details": "mis detalles 2.0",
       "objPath": "https://threejs.org/examples/models/fbx/Samba%20Dancing.fbx"
+    },
+    {
+      "title": "pedido 1",
+      "estimate": 150,
+      "limit": "2023-11-04T06:28:17.648Z",
+      "details": "pedido 1",
+      "clientID": 1,
+      "state": "inline",
+      "objPath": "https://threejs.org/examples/models/fbx/Samba%20Dancing.fbx",
+      "id": 2
+    },
+    {
+      "title": "pedido 2",
+      "estimate": 150,
+      "limit": "2023-11-04T06:28:38.801Z",
+      "details": "pedido 2",
+      "clientID": 1,
+      "state": "inline",
+      "objPath": "https://threejs.org/examples/models/fbx/Samba%20Dancing.fbx",
+      "id": 3
     }
   ],
   "offers": [
@@ -41,6 +61,14 @@
       "price": 550,
       "accepted": true,
       "limit": "2023-11-04 00:53:37"
+    },
+    {
+      "orderID": 2,
+      "expertID": 2,
+      "price": 400,
+      "limit": "2023-11-30T05:00:00.000Z",
+      "accepted": false,
+      "id": 2
     }
   ]
 }

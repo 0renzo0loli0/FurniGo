@@ -40,6 +40,8 @@ import { OrderViewComponent } from './order/components/order-view/order-view.com
 import { OrderViewControlComponent } from './order/components/order-view-control/order-view-control.component';
 import { OffersComponent } from './order/pages/offers/offers.component';
 import { OfferCardComponent } from './order/components/offer-card/offer-card.component';
+import { OrderSearchComponent } from './order/pages/order-search/order-search.component';
+import { OrderOfferComponent } from './order/pages/order-offer/order-offer.component';
 
 
 
@@ -68,6 +70,8 @@ import { OfferCardComponent } from './order/components/offer-card/offer-card.com
     OrderViewControlComponent,
     OffersComponent,
     OfferCardComponent,
+    OrderSearchComponent,
+    OrderOfferComponent,
   ],
   imports: [
     // Helper imports
