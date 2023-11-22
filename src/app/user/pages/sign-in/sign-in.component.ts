@@ -36,12 +36,6 @@ export class SignInComponent {
     if(this.signInForm.invalid) return
 
     const userEntity = this.signInForm.value
-    this.authService.signIn(userEntity).subscribe((response: any)=>{
-      localStorage.setItem('accessToken', JSON.stringify(response.accessToken))
-      localStorage.setItem('currentUser', JSON.stringify(response.user))
-      this.signInForm.reset()
-      this.router.navigate(['/order/all']).then()
-    })
 
     this.authService.signIn(userEntity).subscribe({
       next: (response: any)=>{
