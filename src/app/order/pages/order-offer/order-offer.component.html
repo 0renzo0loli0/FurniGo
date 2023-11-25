@@ -4,13 +4,12 @@
         [price]="currentOrder.estimate"
         [limit]="currentOrder.limit"
         [details]="currentOrder.details"
-        [objPath]="currentOrder.objPath"
-        [disableControls]="['title', 'objPath', 'details']"
+        [disableControls]="['title', 'details']"
         leftButtonTitle="Mandar Oferta"
         rightButtonTitle="Cancelar"
         (leftButtonAction)="this.onSaveChanges($event)"
         (rightButtonAction)="this.onCancelChanges($event)"
         (afterTyping)="this.onAfterTyping($event)"
     ></app-order-form>
-    <app-order-view-control [objPath]="currentOrder.objPath"></app-order-view-control>
+    <app-order-view-control [orderID]="this.currentOrder.id"></app-order-view-control>
 </div>

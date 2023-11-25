@@ -4,12 +4,11 @@
         [price]="currentOrder.estimate"
         [limit]="currentOrder.limit"
         [details]="currentOrder.details"
-        [objPath]="currentOrder.objPath"
         leftButtonTitle="Guardar Cambios"
         rightButtonTitle="Descartar Cambios"
         (leftButtonAction)="this.onSaveChanges($event)"
         (rightButtonAction)="this.onCancelChanges($event)"
         (afterTyping)="this.onAfterTyping($event)"
     ></app-order-form>
-    <app-order-view-control [objPath]="currentOrder.objPath"></app-order-view-control>
+    <app-order-view-control [orderID]="currentOrder.id" [file]="this.file"></app-order-view-control>
 </div>

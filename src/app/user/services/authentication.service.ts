@@ -11,7 +11,7 @@ export class AuthenticationService extends BaseService {
 
   constructor(http: HttpClient) { 
     super(http)
-    this.resourceEndPoint = ""
+    this.resourceEndPoint = "/auth"
   }
 
   signUp(user: UserEntity): Observable<any>{
@@ -19,6 +19,6 @@ export class AuthenticationService extends BaseService {
   }
 
   signIn(user: UserEntity): Observable<any>{
-    return this.http.post(`${this.basePath}/sign-in`, user).pipe(retry(2), catchError(this.handleError));
+    return this.http.post(`${this.resourcePath()}/login`, user).pipe(retry(2), catchError(this.handleError));
   }
 }

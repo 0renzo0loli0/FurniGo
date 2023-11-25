@@ -33,48 +33,48 @@ export class OrderInfoComponent {
     private router: Router) { }
 
   ngOnInit() {
+    const user = this.currentUser;
+    if (user == null) return;
+
     const queryOrderID = this.route.snapshot.queryParamMap.get('code');
     if (!queryOrderID) return
 
     const orderID = Number(queryOrderID)
-    this.orderService.getOne(orderID).subscribe(data => {
-      this.currentOrder = OrderEntity.fromObj(data)
-      const user = this.currentUser
-      if (!user) return "Unknown"
+    this.orderService.getOne(orderID).subscribe(order => {
+      this.currentOrder = order;
+      this.offerService.getAll(orderID).subscribe(offers => {
+        const acOffer = offers.find(offer => offer.offer.accepted);
 
-      const role = user.role
-      if (role == USER_ROLE.expert) {
-        this.userService.getOne(this.currentOrder.clientID).subscribe(reqUser => {
-          this.currenShowUserName = reqUser.name;
-        })
-        this.offerService.getAll().subscribe(reqOffer => {
-          const offer = reqOffer
-            .find(offer => offer.expertID == user.id && offer.orderID == this.currentOrder.id)
-          this.expertExistOffer = Boolean(offer)
-          this.expertIsAcceptedOffer = (!!offer && offer.accepted);
-          console.log(this.expertExistOffer, this.expertIsAcceptedOffer)
-        })
-        return
-      }
+        this.wasAccepted = (user.role == USER_ROLE.expert) || acOffer != undefined;
+        if (this.wasAccepted) {
+          if (user.role == USER_ROLE.client) {
+            this.currenShowUserName = acOffer?.user.name || "Unknown"
+            this.currenShowUserName += " / "
+            this.currenShowUserName += acOffer?.user.phone || "none"
+          }
+          else if (user.role == USER_ROLE.expert) {
+            this.currenShowUserName = "Cliente"
 
-      this.offerService.getAll().subscribe(reqOffer => {
-        const offers = reqOffer.filter(offer => offer.orderID == this.currentOrder.id);
-        const acceptedOffer = offers.find(offer => offer.accepted)
-        this.wasAccepted = (Boolean(acceptedOffer) || offers.length == 0);
-        if (acceptedOffer) {
-          this.userService.getOne(acceptedOffer.expertID).subscribe(reqUser => {
-            this.currenShowUserName = reqUser.name;
-          })
+            // añadir ruta de busqueda de usuario
+          }
         }
+
+        if (user.role == USER_ROLE.expert)
+          this.expertExistOffer = offers.some(
+            offer => offer.offer.expertID == this.currentUser?.id
+          )
+
+        if (user.role == USER_ROLE.client)
+          this.expertExistOffer = acOffer != undefined;
+        this.expertIsAcceptedOffer = acOffer?.user.id == user.id
       })
 
-      return;
     })
   }
 
   getShowUser() {
     const user = this.currentUser
-    if (!user) return "Unknown"
+    if (!user) return "No User"
 
     const role = user.role
 
@@ -85,30 +85,30 @@ export class OrderInfoComponent {
     return this.currenShowUserName
   }
 
-  isClient(){
+  isClient() {
     const user = this.currentUser
     if (!user) return false;
 
     return user.role == USER_ROLE.client
   }
 
-  cancelOrder(event: Event){
+  cancelOrder(event: Event) {
     this.currentOrder.state = OrderStatus.CANCELLED;
-    this.orderService.update(this.currentOrder.id, this.currentOrder).subscribe(reqOrder => {
+    this.orderService.cancel(this.currentOrder.id).subscribe(reqOrder => {
       this.router.navigate(['/order/all'])
     })
   }
 
-  finishClientOrder(event: Event){
+  finishClientOrder(event: Event) {
     this.currentOrder.state = OrderStatus.DONE;
-    this.orderService.update(this.currentOrder.id, this.currentOrder).subscribe(reqOrder => {
+    this.orderService.done(this.currentOrder.id).subscribe(reqOrder => {
       this.router.navigate(['/order/all'])
     })
   }
 
-  finishExpertOrder(event: Event){
+  finishExpertOrder(event: Event) {
     this.currentOrder.state = OrderStatus.FINISHED;
-    this.orderService.update(this.currentOrder.id, this.currentOrder).subscribe(reqOrder => {
+    this.orderService.finish(this.currentOrder.id).subscribe(reqOrder => {
       this.router.navigate(['/order/all'])
     })
   }

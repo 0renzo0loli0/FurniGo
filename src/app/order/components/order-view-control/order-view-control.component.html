@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-content>
-        <app-order-view [objPath]="this.objPath"></app-order-view>
+        <app-order-view [objPath]="this.url" [objName]="this.objName"></app-order-view>
     </mat-card-content>
     <mat-card-actions align="end">
         <app-button fontIcon="download" (click)="this.onDownload($event)">Descargar Modelo</app-button>

@@ -8,7 +8,6 @@ export class OrderEntity{
     title: string = "Unknown";
     limit: Date = new Date();
     details: string = "Unknown"
-    objPath: string = ""
 
     constructor(){
         this.id = -1;
@@ -18,7 +17,6 @@ export class OrderEntity{
         this.limit = new Date()
         this.details = "lorem ipsum dolor sit amet lore mauris et dolor sit"
         this.state = OrderStatus.INLINE
-        this.objPath = ""
     }
 
     static fromObj(obj: any) : OrderEntity{
@@ -30,7 +28,6 @@ export class OrderEntity{
         nOrder.state = obj.state;
         nOrder.limit = new Date(obj.limit);
         nOrder.details = obj.details;
-        nOrder.objPath = obj.objPath;
         return nOrder;
     }
 }

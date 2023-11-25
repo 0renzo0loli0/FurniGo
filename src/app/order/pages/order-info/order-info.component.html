@@ -2,7 +2,7 @@
     <app-order-details [code]="currentOrder.id" [status]="currentOrder.state" [limit]="currentOrder.limit"
         [title]="currentOrder.title" [maxBudget]="currentOrder.estimate" [details]="currentOrder.details"
         [wasAccepted]="this.wasAccepted" [nextUserName]="this.getShowUser()"></app-order-details>
-    <app-order-view-control [objPath]="currentOrder.objPath"></app-order-view-control>
+    <app-order-view-control [orderID]="currentOrder.id"></app-order-view-control>
 </div>
 <ng-container *ngIf="this.isClient(); else expert">
     <button *ngIf="currentOrder.state != 'cancelled' && currentOrder.state != 'done' && currentOrder.state != 'waiting'" mat-icon-button
@@ -13,19 +13,19 @@
     </button>
     <button *ngIf="currentOrder.state == 'waiting'" mat-icon-button class="finish-button1"
         (click)="this.finishClientOrder($event)">
-        <mat-icon aria-label="Button Edit">
+        <mat-icon aria-label="Button Done">
             check
         </mat-icon>
     </button>
     <button *ngIf="currentOrder.state != 'cancelled' && currentOrder.state != 'done' && currentOrder.state != 'waiting'" mat-icon-button class="cancel-button1"
         (click)="this.cancelOrder($event)">
-        <mat-icon aria-label="Button Edit">
+        <mat-icon aria-label="Button Cancel">
             cancel
         </mat-icon>
     </button>
 </ng-container>
 <ng-template #expert>
-    <ng-container *ngIf="!this.expertExistOffer; else existOffer">
+    <ng-container *ngIf="!this.expertExistOffer && currentOrder.state != 'building'; else existOffer">
         <button mat-icon-button class="accept-button" routerLink="/order/offer" [queryParams]="{code: currentOrder.id}">
             <mat-icon aria-label="Button Accept">
                 check
@@ -41,11 +41,6 @@
             <button mat-icon-button class="finish-button2" (click)="this.finishExpertOrder($event)">
                 <mat-icon aria-label="Button Edit">
                     check
-                </mat-icon>
-            </button>
-            <button mat-icon-button class="cancel-button2" (click)="this.cancelOrder($event)">
-                <mat-icon aria-label="Button Finish">
-                    cancel
                 </mat-icon>
             </button>
         </ng-container>

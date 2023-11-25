@@ -30,7 +30,7 @@ const routes: Routes = [
           { path: 'info', component: OrderInfoComponent },
           { path: 'new', component: OrderNewComponent, canActivate: [clientGuard] },
           { path: 'offers', component: OffersComponent, canActivate: [clientGuard] },
-          { path: 'edit', component: OrderEditComponent, canActivate: [expertGuard] },
+          { path: 'edit', component: OrderEditComponent, canActivate: [clientGuard] },
           { path: 'search', component: OrderSearchComponent, canActivate: [expertGuard] },
           { path: 'offer', component: OrderOfferComponent, canActivate: [expertGuard] },
         ],

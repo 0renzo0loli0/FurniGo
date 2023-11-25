@@ -23,21 +23,18 @@ export class OrderAllComponent implements OnInit {
     const user = this.currentuser
     if (!user) return
 
-    if (user.role == USER_ROLE.client) {
-      this.orderService.getAll().subscribe(data => {
-        this.orders = data.filter(order => { return order.clientID == user.id })
-      })
-      return;
-    }
-
-    this.offerService.getAll().subscribe(reqOffer => {
-      const expertOffers = reqOffer.filter(offer => offer.expertID == user.id)
-      this.orderService.getAll().subscribe(reqOrder => {
-        this.orders = reqOrder
-          .filter(order =>
-            expertOffers.some(offer => offer.orderID == order.id))
-      })
+    this.orderService.getAll(user.id).subscribe(orders=>{
+      this.orders = orders;
     })
+
+    // this.offerService.getAll().subscribe(reqOffer => {
+    //   const expertOffers = reqOffer.filter(offer => offer.expertID == user.id)
+    //   this.orderService.getAll().subscribe(reqOrder => {
+    //     this.orders = reqOrder
+    //       .filter(order =>
+    //         expertOffers.some(offer => offer.orderID == order.id))
+    //   })
+    // })
   }
 
   get currentuser() {

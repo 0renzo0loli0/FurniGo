@@ -40,11 +40,10 @@ export class OrderOfferComponent {
     const orderObj = orderForm.controls
 
     const nOffer = {
-      orderID: this.currentOrder.id,
-      expertID: user.id,
+      orderId: this.currentOrder.id,
+      expertId: user.id,
       price: orderObj['price'].value,
-      limit: orderObj['limit'].value,
-      accepted: false
+      date: orderObj['limit'].value,
     }
 
     this.offerService.create(nOffer).subscribe(data => {
@@ -62,7 +61,7 @@ export class OrderOfferComponent {
     })
   }
 
-  onAfterTyping = (data: string) => {
-    this.currentOrder.objPath = data
+  onAfterTyping = ({name, file}: {name: string, file: File}) => {
+    // this.currentOrder.objName = name
   }
 }

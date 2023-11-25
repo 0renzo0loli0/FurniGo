@@ -1,5 +1,26 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "user123@domain.com",
+      "password": "$2a$10$Lx5t3Td02Om18gMifKhd1ex5/Khd9sGDc3ZWe392SaJL.tzL8DvQ6",
+      "name": "renzo",
+      "lastName": "loli",
+      "role": "client",
+      "phone": "+51-999999999",
+      "pic": "https://i.pinimg.com/736x/8d/ff/c8/8dffc810ac2226282085257e73a60761.jpg",
+      "id": 1
+    },
+    {
+      "email": "renzololi1@hotmail.com",
+      "password": "$2a$10$anQHeY9EhZt2LjHDukCGdubMuw3rm1QRY3GIedlOE7LN9l4Y3JVDe",
+      "name": "renzo",
+      "lastName": "loli",
+      "role": "client",
+      "phone": "+51-999999999",
+      "pic": "https://i.pinimg.com/736x/8d/ff/c8/8dffc810ac2226282085257e73a60761.jpg",
+      "id": 2
+    }
+  ],
   "orders": [],
   "offers": []
 }

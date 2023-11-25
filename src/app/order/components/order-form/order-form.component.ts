@@ -11,22 +11,33 @@ const reg = '^https://.*';
 })
 export class OrderFormComponent {
 
-  @ViewChild('objRef') objRef: ElementRef;
+  @ViewChild('fileInput') objRef: ElementRef;
 
   orderForm: FormGroup = new FormGroup({
     title: new FormControl<string>('', [Validators.required]),
     price: new FormControl<number>(0, [Validators.min(0), Validators.required]),
     limit: new FormControl<Date>(new Date(), [Validators.required]),
     details: new FormControl<string>('', [Validators.required]),
-    objPath: new FormControl('', [Validators.pattern(reg), Validators.required])
   });
+
+  selectedFile: any = null;
+  @Input() canUpdateFile: boolean = false;
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0] ?? null;
+    if (this.selectedFile != null)
+      this.afterTyping.emit({
+        name: this.selectedFile.name,
+        file: this.selectedFile
+      });
+  }
 
   @Input() leftButtonTitle: string = "Left Button"
   @Output() leftButtonAction: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
   @Input() rightButtonTitle: string = "Right Button"
   @Output() rightButtonAction: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
-  @Input() set disableControls(controls: Array<'title' | 'limit' | 'price' | 'details' | 'objPath'>) {
+  @Input() set disableControls(controls: Array<'title' | 'limit' | 'price' | 'details'>) {
     for (let control of controls) {
       this.orderForm.controls[control].disable()
     }
@@ -64,14 +75,6 @@ export class OrderFormComponent {
     this.orderForm.controls['details'].setValue(nDetails)
   }
 
-  get objPath(): AbstractControl {
-    return this.orderForm.controls['objPath']
-  }
-
-  @Input() set objPath(nObjPath: string) {
-    this.orderForm.controls['objPath'].setValue(nObjPath)
-  }
-
   onLeftClick(_: Event) {
     if (this.orderForm.valid)
       this.leftButtonAction.emit(this.orderForm)
@@ -82,17 +85,6 @@ export class OrderFormComponent {
     this.rightButtonAction.emit(this.orderForm)
   }
 
-  @Output() afterTyping: EventEmitter<string> = new EventEmitter()
-
-  ngAfterViewInit() {
-    fromEvent<Event>(this.objRef.nativeElement, 'input')
-      .pipe(map(event => (event.target as HTMLInputElement).value))
-      .pipe(debounceTime(1000))
-      .pipe(distinctUntilChanged())
-      .subscribe(data => {
-        if (this.orderForm.controls['objPath'].valid)
-          this.afterTyping.emit(data);
-      })
-  }
+  @Output() afterTyping: EventEmitter<{ name: string, file: File }> = new EventEmitter()
 
 }

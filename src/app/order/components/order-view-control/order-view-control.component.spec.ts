@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OrderViewControlComponent } from './order-view-control.component';
+import { OrderViewControlComponent } from './OrderViewControlComponent';
 
 describe('OrderViewControlComponent', () => {
   let component: OrderViewControlComponent;

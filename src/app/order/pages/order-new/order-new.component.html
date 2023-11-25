@@ -5,6 +5,7 @@
         (leftButtonAction)="this.onSaveChanges($event)"
         (rightButtonAction)="this.onCancelChanges($event)"
         (afterTyping)="this.onAfterTyping($event)"
+        [canUpdateFile]="true"
     ></app-order-form>
-    <app-order-view-control [objPath]="this.objPath"></app-order-view-control>
+    <app-order-view-control [file]="this.file"></app-order-view-control>
 </div>

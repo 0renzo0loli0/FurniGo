@@ -1,6 +1,6 @@
 export enum USER_ROLE {
-    client = "client",
-    expert = "expert"
+    client = "CLIENT",
+    expert = "EXPERT"
 }
 
 export class UserEntity {

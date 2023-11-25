@@ -12,7 +12,7 @@ import { OrderStatus } from '../../model/order_state.enum';
 })
 export class OrderNewComponent {
 
-  objPath: string = ""
+  file: File | null = null;
 
   constructor(private router: Router,
     private orderService: OrderService) { }
@@ -22,18 +22,26 @@ export class OrderNewComponent {
 
   onSaveChanges = (orderForm: FormGroup) => {
     const orderObj = orderForm.controls
+    const user = AuthUtils.getCurrentUser()
+    const file = this.file
+    if (user == null || file == null) return;
+
     let newOrder = {
       title: orderObj['title'].value,
       estimate: orderObj['price'].value,
       limit: orderObj['limit'].value,
       details: orderObj['details'].value,
-      clientID: AuthUtils.getCurrentUser()?.id,
-      state: OrderStatus.INLINE,
-      objPath: orderObj['objPath'].value
+      clientId: user.id,
+      state: OrderStatus.INLINE
     }
 
+    const nFormData = new FormData();
+    nFormData.append("file", file);
+
     this.orderService.create(newOrder).subscribe(data => {
-      this.router.navigate(['/order/all'])
+      this.orderService.appendDesign(data.id, nFormData).subscribe(res => {
+        this.router.navigate(['/order/all'])
+      })
     })
   }
 
@@ -41,7 +49,7 @@ export class OrderNewComponent {
     this.router.navigate(['/order/all'])
   }
 
-  onAfterTyping = (data: string) => {
-    this.objPath = data
+  onAfterTyping = ({ name, file }: { name: string, file: File }) => {
+    this.file = file
   }
 }

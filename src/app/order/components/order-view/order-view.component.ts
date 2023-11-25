@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import * as THREE from 'three';
-import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
+import { FBXLoader } from 'three/examples/jsm/Addons'
+import { OBJLoader } from 'three/examples/jsm/Addons'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 @Component({
@@ -12,6 +14,9 @@ export class OrderViewComponent implements OnInit, AfterViewInit {
 
   @ViewChild('canvas') private canvasRef: ElementRef;
   @Input() objPath: string = "";
+  @Input() objName: string = "";
+
+  constructor(private http: HttpClient){}
 
   ngOnInit(): void {
   }
@@ -43,25 +48,37 @@ export class OrderViewComponent implements OnInit, AfterViewInit {
   }
 
   loadFromPath() {
-    this.fbxLoader.load(this.objPath, (object) => {
+    const ext = this.objName.substring(this.objName.lastIndexOf(".")); 
 
-      object.traverse(function (child) {
-        if (child.isObject3D) {
-          child.castShadow = true;
-          child.receiveShadow = true;
-        }
-      });
+    if(ext == ".fbx")
+      this.fbxLoader.load(this.objPath, (object) => {
 
-      object.name = "baseObject";
-      this.scene.add(object);
-    }, (data) => { }, (err) => { console.error(err) });
+        object.traverse(function (child) {
+          if (child.isObject3D) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+          }
+        });
 
-  }
+        object.name = "baseObject";
+        this.scene.add(object);
+      }, (data) => {  }, (err) => { console.error(err) });
+
+    if(ext == ".obj")
+      this.objLoader.load(this.objPath, (object)=> {
+        
+        object.name = "baseObject";
+        this.scene.add(object);
+      }, (data) => {  }, (err) => { console.error(err) })
+      
+    }
 
   reloadObject() {
     let sObject = this.scene.getObjectByName("baseObject");
     if (sObject)
+    {
       this.scene.remove(sObject);
+    }
     this.loadFromPath();
   }
 
@@ -70,6 +87,7 @@ export class OrderViewComponent implements OnInit, AfterViewInit {
   private renderer: THREE.WebGLRenderer;
   private controls: OrbitControls;
   private fbxLoader: FBXLoader;
+  private objLoader: OBJLoader;
 
   createScene() {
     this.camera = new THREE.PerspectiveCamera(
@@ -77,11 +95,11 @@ export class OrderViewComponent implements OnInit, AfterViewInit {
       this.canvasRef.nativeElement.width / this.canvasRef.nativeElement.height,
       1,
       2000);
-    this.camera.position.set(100, 200, 300);
+    this.camera.position.set(700, 600, 400);
 
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0xa0a0a0);
-    this.scene.fog = new THREE.Fog(0xa0a0a0, 200, 1000);
+    // this.scene.background = new THREE.Color(0xa0a0a0);
+    // this.scene.fog = new THREE.Fog(0xa0a0a0, 200, 1000);
 
     const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 5);
     hemiLight.position.set(0, 200, 0);
@@ -100,14 +118,15 @@ export class OrderViewComponent implements OnInit, AfterViewInit {
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.MeshPhongMaterial({ color: 0x999999, depthWrite: false }));
     mesh.rotation.x = - Math.PI / 2;
     mesh.receiveShadow = true;
-    this.scene.add(mesh);
+    // this.scene.add(mesh);
 
     const grid = new THREE.GridHelper(2000, 20, 0x000000, 0x000000);
     grid.material.opacity = 0.2;
     grid.material.transparent = true;
-    this.scene.add(grid);
+    // this.scene.add(grid);
 
     this.fbxLoader = new FBXLoader();
+    this.objLoader = new OBJLoader();
   }
 
 }

@@ -11,6 +11,7 @@ import { OrderService } from '../../services/order.service';
 })
 export class OrderEditComponent implements OnInit {
   currentOrder: OrderEntity = new OrderEntity();
+  file: File | null = null;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -23,7 +24,7 @@ export class OrderEditComponent implements OnInit {
     const orderID = Number(queryOrderID)
 
     this.orderService.getOne(orderID).subscribe(data => {
-      this.currentOrder = OrderEntity.fromObj(data)
+      this.currentOrder = data
     })
   }
 
@@ -33,9 +34,15 @@ export class OrderEditComponent implements OnInit {
     this.currentOrder.estimate = orderObj['price'].value
     this.currentOrder.limit = orderObj['limit'].value
     this.currentOrder.details = orderObj['details'].value
-    this.currentOrder.objPath = orderObj['objPath'].value
 
-    this.orderService.update(this.currentOrder.id, this.currentOrder).subscribe(data => {
+    const command = {
+      estimatedPrice: this.currentOrder.estimate,
+      title: this.currentOrder.title,
+      limitDate: this.currentOrder.limit,
+      details: this.currentOrder.details,
+    }
+
+    this.orderService.update(this.currentOrder.id, command).subscribe(data => {
       this.returnToInfo()
     })
   }
@@ -50,7 +57,8 @@ export class OrderEditComponent implements OnInit {
     })
   }
 
-  onAfterTyping = (data: string) => {
-    this.currentOrder.objPath = data
+  onAfterTyping = ({ name, file }: { name: string, file: File }) => {
+    this.file = file
+    // this.currentOrder.objName = name
   }
 }

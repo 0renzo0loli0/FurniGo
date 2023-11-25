@@ -12,8 +12,8 @@ export namespace AuthUtils {
 
     export const getToken = (): string | null => {
         const token = getStorageToken();
-        if (token) {
-            return JSON.parse(token);
+        if (token != null && token != undefined) {
+            return token.replace("\"", "");
         }
         return null;
     }

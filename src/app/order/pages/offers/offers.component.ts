@@ -34,36 +34,24 @@ export class OffersComponent implements OnInit {
     if (!queryOrderID) return
 
     const orderID = Number(queryOrderID)
-    this.orderService.getOne(orderID).subscribe(reqOrder => {
-      this.currentOrder = OrderEntity.fromObj(reqOrder)
-      this.offerService.getAll().subscribe(reqOffer => {
-        const offers = reqOffer.filter(offer => offer.orderID == this.currentOrder.id)
-        this.userService.getAll().subscribe(reqUser => {
-          offers.forEach(offer => {
-            const user = reqUser.find(user => user.id == offer.expertID)
-            if (user)
-              this.userOffers.push({
-                offer: offer,
-                user: user
-              })
-          })
-        })
-      })
+    this.offerService.getAll(orderID).subscribe((offers) => {
+      this.userOffers = offers;
+      this.orderService.getOne(orderID).subscribe((order) => {
+        this.currentOrder = order;
+      });
     })
   }
 
   acceptOffer(offer: OfferEntity) {
-    offer.accepted = true;
-    this.currentOrder.estimate = offer.price
-    this.currentOrder.limit = offer.limit
-    this.currentOrder.state = OrderStatus.BUILDING;
-    this.offerService.update(offer.id, offer).subscribe(res => {
-      this.orderService.update(this.currentOrder.id, this.currentOrder).subscribe(resOrder => {
-        this.router.navigate(['/order/info'], {
-          queryParams: {
-            code: this.currentOrder.id
-          }
-        })
+    this.offerService.accept(offer.id).subscribe(res => {
+      offer.accepted = true;
+      this.currentOrder.estimate = offer.price
+      this.currentOrder.limit = offer.limit
+      this.currentOrder.state = OrderStatus.BUILDING;
+      this.router.navigate(['/order/info'], {
+        queryParams: {
+          code: this.currentOrder.id
+        }
       })
     })
   }
